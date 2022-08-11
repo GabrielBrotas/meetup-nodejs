@@ -6,8 +6,8 @@ export type MeetingProperties = {
   name: string;
   category_id: string;
   category_name: string;
-  participants_username?: Array<string>;
   date: Date;
+  participants_username?: Array<string>;
   duration_min?: number;
 };
 
@@ -19,16 +19,16 @@ type MeetingCategoryProps = {
 export class Meeting extends Entity<MeetingProperties> {
   constructor(public readonly props: MeetingProperties, id?: string) {
     super(props, id);
-
-    Meeting.validate(props);
+    
     this.name = this.props.name;
     this.props.duration_min = this.props.duration_min ?? 60;
     this.props.participants_username = this.props.participants_username ?? [];
+    Meeting.validate(this.props);
   }
 
   updateCategory(value: MeetingCategoryProps): void {
     this.category = value
-    Meeting.validate(this.toJSON());
+    Meeting.validate(this.props);
   }
 
   static validate(props: MeetingProperties) {

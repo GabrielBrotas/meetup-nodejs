@@ -10,6 +10,8 @@ module.exports = {
           "root": ["./src/"],
           alias: {
             "domain": "./src/domain",
+            "infra": "./src/infra",
+            "application": "./src/application",
           }
         }
       ],

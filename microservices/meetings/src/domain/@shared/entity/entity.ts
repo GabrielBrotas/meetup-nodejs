@@ -4,7 +4,13 @@ export abstract class Entity<Props = any> {
   public readonly id: string;
 
   constructor(public readonly props: Props, id?: string) {
-    this.id = id || uuidv4();
+    if ((this.props as any).id) {
+      this.id = (this.props as any).id
+      delete (this.props as any).id
+    } else {
+      this.id = id || uuidv4();
+    }
+    
   }
 
   toJSON(): Required<{ id: string } & Props> {

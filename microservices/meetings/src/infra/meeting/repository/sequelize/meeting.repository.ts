@@ -9,15 +9,15 @@ export class MeetingRepository implements IMeetingRepository.Repository {
 
   async findAll(): Promise<Meeting[]> {
     const meetingsModel = await MeetingModel.findAll();
-    return meetingsModel.map((meeting) =>
-      new Meeting(meeting)
-    );
+    return meetingsModel.map((meeting) => {
+      return new Meeting(meeting.toJSON())
+    });
   }
 
   async findById(id: string): Promise<Meeting> {
     const meetingModel = await MeetingModel.findOne({ where: { id } });
 
-    return new Meeting(meetingModel);
+    return new Meeting(meetingModel.toJSON());
   }
 
   async update(entity: Meeting): Promise<void> {
