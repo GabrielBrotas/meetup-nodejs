@@ -1,12 +1,37 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es6", // or a more recent ecmascript version
+    "emitDecoratorMetadata": true,
     "module": "commonjs",
     "baseUrl": "./src/",
     "outDir": "./dist",
     "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noEmit": true,
+    "declaration": true,
+    "isolatedModules": true,
+    
+    "lib": ["es6"],                             
+    "rootDir": "./src",                       
+    "removeComments": true,                
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],                          
+    "resolveJsonModule": true,
+    "skipLibCheck": true,                     
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "domain/*": ["./src/domain/*"],
+      "infra/*": ["./src/infra/*"],
+      "application/*": ["./src/application/*"],
+    }
   },
   "include": [
     "./src/"
+  ],
+  "plugins": [
+    { "transform": "typescript-transform-paths" },
   ]
 }

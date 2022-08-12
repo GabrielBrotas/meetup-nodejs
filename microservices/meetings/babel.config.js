@@ -4,18 +4,21 @@ module.exports = {
       ['@babel/preset-typescript', {allowDeclareFields: true}],
     ],
     plugins: [
-      ['@babel/plugin-proposal-decorators', { legacy: true }],
+      ["@babel/plugin-transform-typescript", { allowDeclareFields: true }],
       [ 
         "module-resolver", {
-          "root": ["./src/"],
           alias: {
-            "domain": "./src/domain",
-            "infra": "./src/infra",
-            "application": "./src/application",
+            'domain': './src/domain',
+            'infra': './src/infra',
+            'application': './src/application',
           }
         }
       ],
-      ['@babel/plugin-proposal-class-properties', { loose: false }]
+      ['@babel/plugin-proposal-decorators', { legacy: true }],
+      ['@babel/plugin-proposal-class-properties', { loose: true }],
+    ],
+    ignore: [
+      '**/*.spec.ts'
     ]
     
 };

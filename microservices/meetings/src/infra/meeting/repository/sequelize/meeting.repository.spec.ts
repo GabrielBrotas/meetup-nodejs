@@ -28,7 +28,7 @@ describe("Order repository test", () => {
   });
 
   afterEach(async () => {
-    await sequelize.drop({logging: false})
+    // await sequelize.drop({logging: false})
     await sequelize.close();
   });
 

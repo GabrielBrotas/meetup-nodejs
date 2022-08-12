@@ -11,12 +11,14 @@ services:
     ports:
       - 4000:4000
     volumes:
-      - ~/.aws:/usr/.aws
-    command: sh -c "dockerize -wait tcp://meetings-db:5432 -timeout 30s -wait-retry-interval 3s python3 project/server.py"
+      - .:/home/node/app
+    command: .docker/start.sh
+
+    # command: sh -c "dockerize -wait tcp://meetings-db:5432 -timeout 30s -wait-retry-interval 3s python3 project/server.py"
 
   meetings-db:
     image: postgres:13.1-alpine
-    container_name: meetings-postgres
+    container_name: meetings-db
     restart: always
     tty: true 
     ports:
