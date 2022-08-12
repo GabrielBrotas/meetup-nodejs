@@ -29,3 +29,17 @@ services:
       - POSTGRES_DB=meetup-meetings
     volumes:
       - .docker/db:/var/lib/postgresql/data
+
+  meetings-test-db:
+    image: postgres:13.1-alpine
+    container_name: meetings-test-db
+    restart: always
+    tty: true 
+    ports:
+      - '5434:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=meetup-meetings
+    volumes:
+      - .docker/db:/var/lib/postgresql/data

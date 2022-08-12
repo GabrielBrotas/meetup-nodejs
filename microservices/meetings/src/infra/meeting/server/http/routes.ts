@@ -1,19 +1,30 @@
-import { FindAllMeetingsUseCase } from "application/meetings/use-cases/find-all-meetings";
 import { Router } from "express";
-import { MeetingRepository } from "infra/meeting/repository/sequelize";
+import { body } from 'express-validator';
+import { MeetingRepository } from "../../repository/sequelize";
+import { FindAllMeetingsController } from "./controller/find-all-meetings-controller";
+import { CreateMeetingController } from "./controller/create-meeting-controller";
+import { FindOneMeetingController } from "./controller/find-one-meeting-controller";
+import { DeleteMeetingController } from "./controller/delete-meeting-controller";
 
 export const meetingsRouter = Router()
 
 const meetingsRepository = new MeetingRepository()
 
-meetingsRouter.get("/", async (req, res) => {
-    const findAllMeetingsUseCase = new FindAllMeetingsUseCase.UseCase(meetingsRepository)
+const findAllMeetingsController = new FindAllMeetingsController(meetingsRepository);
+const createMeetingController = new CreateMeetingController(meetingsRepository);
+const findOneMeetingController = new FindOneMeetingController(meetingsRepository);
+const deleteMeetingController = new DeleteMeetingController(meetingsRepository);
 
-    const meetings = findAllMeetingsUseCase.execute()
+meetingsRouter.get("/", async (req, res) => await findAllMeetingsController.handle(req, res))
+meetingsRouter.get("/:id", async (req, res) => await findOneMeetingController.handle(req, res))
+meetingsRouter.delete("/:id", async (req, res) => await deleteMeetingController.handle(req, res))
 
-    return res.status(200).json({
-        success: true,
-        result: meetings
-    })
-})
-
+meetingsRouter.post("/", 
+  body('name').isString(),
+  body('category_id').isString(),
+  body('category_name').isString(),
+  body('date').toDate(),
+  body('participants_username').isArray().optional(),
+  body('duration_min').isInt().optional(),
+  async (req, res) => await createMeetingController.handle(req, res)
+)

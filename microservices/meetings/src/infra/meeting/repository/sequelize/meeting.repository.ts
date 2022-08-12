@@ -16,7 +16,7 @@ export class MeetingRepository implements IMeetingRepository.Repository {
 
   async findById(id: string): Promise<Meeting> {
     const meetingModel = await MeetingModel.findOne({ where: { id } });
-
+    if(!meetingModel) throw new Error("Meeting not found");
     return new Meeting(meetingModel.toJSON());
   }
 

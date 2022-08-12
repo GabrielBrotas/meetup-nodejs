@@ -17,6 +17,7 @@
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-validator": "^6.14.2",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize-typescript": "^2.1.3",

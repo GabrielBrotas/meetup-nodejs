@@ -3,24 +3,14 @@ import { Sequelize } from "sequelize-typescript";
 import { Meeting } from "domain/meeting/entities";
 import { MeetingModel } from "./meeting.model";
 import { MeetingRepository } from "./meeting.repository";
+import { db_test_config } from "infra/@shared/db-test-config";
 
 describe("Order repository test", () => {
   let sequelize: Sequelize;
 
   beforeEach(async () => {
 
-    sequelize = new Sequelize({
-      dialect: 'postgres',
-      host: "localhost",
-      username: "postgres",
-      password: "password123",
-      database: "meetup-meetings",
-      port: 5432,
-      define: {
-        timestamps: true,
-      },
-      logging: false
-    });
+    sequelize = new Sequelize(db_test_config);
   
     sequelize.addModels([MeetingModel]);
   
@@ -28,7 +18,7 @@ describe("Order repository test", () => {
   });
 
   afterEach(async () => {
-    // await sequelize.drop({logging: false})
+    await sequelize.drop({logging: false})
     await sequelize.close();
   });
 

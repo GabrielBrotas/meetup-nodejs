@@ -9,6 +9,7 @@ export namespace FindAllMeetingsUseCase {
   
     async execute(): Promise<Output> {
       const meetings = await this.meetingRepository.findAll();
+      
       return meetings.map(meet => MeetingOutputMapper.toOutput(meet))
     }
   }
