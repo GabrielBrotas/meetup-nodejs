@@ -1,3 +1,5 @@
 .docker/*
 !.docker/start.sh
 !.docker/.gitkeep
+
+node_modules
