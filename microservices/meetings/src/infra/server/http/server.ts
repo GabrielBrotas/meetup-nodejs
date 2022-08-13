@@ -7,11 +7,7 @@ const app = express()
 
 app.use(express.json())
 
-sync_db().then(() => {
-  console.log("db sync successfully")
-}).catch((error) => {
-  console.log("error on sync db = ", error)
-})
+sync_db()
 
 app.use('/meetings', meetingsRouter)
 

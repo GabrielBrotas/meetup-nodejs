@@ -8,7 +8,6 @@ export class FindAllMeetingsController {
 
   async handle(req: Request, res: Response): Promise<Response> {
     try {
-      console.log(this.meetingsRepository)
       const findAllMeetingsUseCase = new FindAllMeetingsUseCase.UseCase(this.meetingsRepository)
   
       const meetings = await findAllMeetingsUseCase.execute()
