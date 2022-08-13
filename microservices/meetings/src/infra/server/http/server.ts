@@ -1,5 +1,5 @@
 import express from 'express'
-import { meetingsRouter } from 'infra/meeting/server/http/routes'
+import { meetingsRouter } from 'infra/meetings/server/http/routes'
 import { hostname } from 'os'
 import { sync_db } from '../db'
 

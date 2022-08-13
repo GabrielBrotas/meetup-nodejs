@@ -1,5 +1,5 @@
-import { Meeting } from "domain/meeting/entities";
-import { IMeetingRepository } from "domain/meeting/repository";
+import { Meeting } from "domain/meetings/entities";
+import { IMeetingRepository } from "domain/meetings/repository";
 import { MeetingOutputMapper, MeetingOutput } from "../dto";
 import { IUseCase } from '../../dto/use-case';
 

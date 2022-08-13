@@ -1,13 +1,13 @@
-import { IMeetingRepository } from "domain/meetings/repository";
+import { ICategoryRepository } from 'domain/categories/repository';
 import { IUseCase } from '../../dto/use-case';
 
-export namespace DeleteMeetingUseCase {
+export namespace DeleteCategoryUseCase {
   
 	export class UseCase implements IUseCase<Input, Output> {
-    constructor(private meetingRepository: IMeetingRepository.Repository) {}
+    constructor(private categoriesRepository: ICategoryRepository.Repository) {}
   
     async execute(input: Input): Promise<Output> {
-      await this.meetingRepository.delete(input.id);
+      await this.categoriesRepository.delete(input.id);
     }
   }
 

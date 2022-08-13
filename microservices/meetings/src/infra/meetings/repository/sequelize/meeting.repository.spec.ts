@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import { Sequelize } from "sequelize-typescript";
-import { Meeting } from "domain/meeting/entities";
+import { Meeting } from "domain/meetings/entities";
 import { MeetingModel } from "./meeting.model";
 import { MeetingRepository } from "./meeting.repository";
 import { db_test_config } from "infra/@shared/db-test-config";

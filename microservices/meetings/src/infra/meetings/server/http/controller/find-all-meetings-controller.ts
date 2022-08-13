@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { MeetingRepository } from 'infra/meeting/repository/sequelize';
+import { MeetingRepository } from 'infra/meetings/repository/sequelize';
 import { FindAllMeetingsUseCase } from 'application/meeting/use-cases';
 
 export class FindAllMeetingsController {

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import { MeetingRepository } from 'infra/meeting/repository/sequelize';
+import { MeetingRepository } from 'infra/meetings/repository/sequelize';
 import { CreateMeetingUseCase } from 'application/meeting/use-cases';
 
 export class CreateMeetingController {

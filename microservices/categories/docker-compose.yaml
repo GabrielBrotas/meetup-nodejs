@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  categories:
+    depends_on:
+      - categories-db
+    build:
+      context: ./packages/core
+      dockerfile: Dockerfile
+    container_name: categories-svc
+    ports:
+      - 4001:4001
+    volumes:
+      - ./packages/core:/home/node/app
+
+  categories-db:
+    image: postgres:13.1-alpine
+    container_name: categories-db
+    restart: always
+    tty: true 
+    ports:
+      - '5435:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=meetup-categories
+    volumes:
+      - ./packages/core/.docker/db:/var/lib/postgresql/data
+
+  categories-test-db:
+    image: postgres:13.1-alpine
+    container_name: categories-test-db
+    restart: always
+    tty: true 
+    ports:
+      - '5437:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=meetup-categories
+    volumes:
+      - .docker/db:/var/lib/postgresql/data

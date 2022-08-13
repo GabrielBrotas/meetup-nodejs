@@ -1,4 +1,4 @@
-import { IMeetingRepository } from "domain/meeting/repository";
+import { IMeetingRepository } from "domain/meetings/repository";
 import { MeetingOutputMapper, MeetingOutput } from "../dto";
 import { IUseCase } from '../../dto/use-case';
 

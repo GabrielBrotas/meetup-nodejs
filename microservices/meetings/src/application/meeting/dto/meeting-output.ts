@@ -1,4 +1,4 @@
-import { Meeting } from "domain/meeting/entities";
+import { Meeting } from "domain/meetings/entities";
 
 export type MeetingOutput = {
   id: string

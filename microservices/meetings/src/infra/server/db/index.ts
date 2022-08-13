@@ -1,4 +1,4 @@
-import { MeetingModel } from 'infra/meeting/repository/sequelize/meeting.model';
+import { MeetingModel } from 'infra/meetings/repository/sequelize/meeting.model';
 import { Sequelize } from 'sequelize-typescript';
 
 import { db_config } from './config';
