@@ -7,13 +7,16 @@
     "node": "16 || 17"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "npm run build --workspace=@gbrotas/categories-core",
+    "start:dev:core": "npm run build --workspace=@gbrotas/categories-core",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:core": "npm run test --workspace=@gbrotas/categories-core",
+    "test:adapters": "npm run test --workspace=@gbrotas/categories-adapters"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "workspaces": [
+    "packages/core",
+    "packages/adapters/nestjs"
+  ],
   "keywords": [],
   "license": "ISC"
 }

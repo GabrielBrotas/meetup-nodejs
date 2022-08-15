@@ -6,7 +6,7 @@ export const db_test_config: SequelizeOptions = {
     host: "meetings-test-db",
     username: "postgres",
     password: "password123",
-    database: "meetup-meetings",
+    database: "postgres",
     port: 5432,
     define: {
       timestamps: true,

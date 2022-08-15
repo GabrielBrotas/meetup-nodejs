@@ -5,13 +5,13 @@ services:
     depends_on:
       - categories-db
     build:
-      context: ./packages/core
+      context: ./
       dockerfile: Dockerfile
     container_name: categories-svc
     ports:
       - 4001:4001
     volumes:
-      - ./packages/core:/home/node/app
+      - .:/home/node/app
 
   categories-db:
     image: postgres:13.1-alpine

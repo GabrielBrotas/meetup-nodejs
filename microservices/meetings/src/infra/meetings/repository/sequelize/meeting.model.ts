@@ -12,13 +12,13 @@ import {
 })
 export class MeetingModel extends Model {
   @PrimaryKey
-  @Column({ type: DataType.UUIDV4 })
+  @Column({ type: DataType.STRING })
   declare id: string;
 
   @Column({ allowNull: false, type: DataType.STRING })
   declare name: string
 
-  @Column({ allowNull: false, type: DataType.UUIDV4 })
+  @Column({ allowNull: false, type: DataType.STRING })
   declare category_id: string;
   
   @Column({ allowNull: false, type: DataType.STRING })
@@ -30,7 +30,7 @@ export class MeetingModel extends Model {
   @Column({ allowNull: false, type: DataType.DATE })
   declare date: Date;
 
-  @Column({ allowNull: false, type: DataType.NUMBER })
+  @Column({ allowNull: false, type: DataType.INTEGER })
   declare duration_min: number;
 }
 

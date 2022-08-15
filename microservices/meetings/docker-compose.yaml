@@ -26,7 +26,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password123
-      - POSTGRES_DB=meetup-meetings
+      - POSTGRES_DB=postgres
     volumes:
       - .docker/db:/var/lib/postgresql/data
 
@@ -40,6 +40,6 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password123
-      - POSTGRES_DB=meetup-meetings
+      - POSTGRES_DB=postgres
     volumes:
       - .docker/db:/var/lib/postgresql/data
