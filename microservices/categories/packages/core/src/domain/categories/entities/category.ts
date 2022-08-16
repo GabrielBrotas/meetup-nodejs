@@ -9,7 +9,7 @@ export type CategoryProperties = {
 export class Category extends Entity<CategoryProperties> {
   constructor(public readonly props: CategoryProperties, id?: string) {
     super(props, id);
-    
+
     this.name = this.props.name;
     Category.validate(this.props);
   }
@@ -32,8 +32,7 @@ export class Category extends Entity<CategoryProperties> {
   }
 
   updateName(value: string): void {
-    this.name = value
+    this.name = value;
     Category.validate(this.props);
   }
-
 }

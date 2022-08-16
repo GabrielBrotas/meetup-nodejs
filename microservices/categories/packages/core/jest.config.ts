@@ -1,4 +1,8 @@
 export default {
+  displayName: {
+    name: 'core',
+    color: 'blue'
+  },
   transform: {
     "^.+\.(t|j)sx?$": ["@swc/jest"]
   },

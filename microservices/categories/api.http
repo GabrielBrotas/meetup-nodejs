@@ -1,0 +1,11 @@
+
+###
+GET http://localhost:4001/health-check
+
+###
+POST http://localhost:4001/categories
+Content-Type: application/json
+
+{
+    "name": "Docker"
+}

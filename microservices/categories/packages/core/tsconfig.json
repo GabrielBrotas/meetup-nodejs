@@ -1,29 +1,22 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "es6",
-    "emitDecoratorMetadata": true,
-    "module": "commonjs",
     "baseUrl": "./src/",
     "outDir": "./dist",
-    "experimentalDecorators": true,
     "esModuleInterop": true,
-    "allowJs": true,
-    "noEmit": true,
-    "declaration": true,
     "isolatedModules": true,
     "lib": ["es6"],                             
     "rootDir": "./src",                       
-    "removeComments": true,                
     "typeRoots": [
       "./node_modules/@types",
       "./src/@types"
     ],                          
     "resolveJsonModule": true,
-    "skipLibCheck": true,                     
-    "forceConsistentCasingInFileNames": true
-    
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
   },
   "include": [
-    "./src/"
+    "./src/**/*"
   ]
 }

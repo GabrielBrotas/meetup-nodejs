@@ -7,16 +7,20 @@
     "node": "16 || 17"
   },
   "scripts": {
-    "start:dev": "npm run build --workspace=@gbrotas/categories-core",
-    "start:dev:core": "npm run build --workspace=@gbrotas/categories-core",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart:dev": "npm run build --workspace=@gbrotas/categories-core",
+    "start:dev": "npm run build -w @gbrotas/categories-core & npm run start:dev -w @gbrotas/categories-http",
+    
+    "test": "jest",
     "test:core": "npm run test --workspace=@gbrotas/categories-core",
-    "test:adapters": "npm run test --workspace=@gbrotas/categories-adapters"
+    "test:adapters": "npm run test --workspace=@gbrotas/categories-http"
   },
   "workspaces": [
     "packages/core",
-    "packages/adapters/nestjs"
+    "packages/adapters/http"
   ],
   "keywords": [],
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.3.0"
+  }
 }

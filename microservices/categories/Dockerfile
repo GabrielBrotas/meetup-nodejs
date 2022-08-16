@@ -6,9 +6,9 @@ RUN mkdir -p /usr/share/man/man1 && \
 
 RUN npm install -g npm@8.5.5
 
-USER node
+WORKDIR /usr/src/app
 
-WORKDIR /home/node/app
+COPY . .
 
 RUN npm install
 

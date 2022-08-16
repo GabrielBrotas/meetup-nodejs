@@ -2,10 +2,23 @@
   "name": "@gbrotas/categories-core",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "index.js",
+  "exports": {
+    "./application": "./dist/application/index.js",
+    "./domain": "./dist/domain/index.js",
+    "./infra": "./dist/infra/index.js"
+  },
+  "typesVersions": {
+    ">=4.0": {
+      "application": ["./dist/application/index.d.ts"],
+      "domain": ["./dist/domain/index.d.ts"],
+      "infra": ["./dist/infra/index.d.ts"]
+    }
+  },
   "scripts": {
     "test": "jest",
-    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored"
+    "prebuild": "rm tsconfig.tsbuildinfo",
+    "build": "concurrently \"babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored\" \"tsc --declaration --declarationDir ./dist\""
   },
   "keywords": [],
   "author": "",
