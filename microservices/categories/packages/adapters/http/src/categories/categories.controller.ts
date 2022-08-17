@@ -6,17 +6,32 @@ import {
   Param,
   Delete,
   Inject,
+  Get,
 } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 
-import { CreateCategoryUseCase } from '@gbrotas/categories-core/application';
 import { EntityValidationError } from '@gbrotas/categories-core/domain';
+import {
+  CreateCategoryUseCase,
+  FindAllCategoriesUseCase,
+  FindOneCategoryUseCase,
+  DeleteCategoryUseCase,
+} from '@gbrotas/categories-core/application';
 
 @Controller('categories')
 export class CategoriesController {
   @Inject(CreateCategoryUseCase.UseCase)
   private createUseCase: CreateCategoryUseCase.UseCase;
+
+  @Inject(FindAllCategoriesUseCase.UseCase)
+  private findAllUseCase: FindAllCategoriesUseCase.UseCase;
+
+  @Inject(FindOneCategoryUseCase.UseCase)
+  private findOneUseCase: FindOneCategoryUseCase.UseCase;
+
+  @Inject(DeleteCategoryUseCase.UseCase)
+  private deleteUseCase: DeleteCategoryUseCase.UseCase;
 
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
@@ -37,18 +52,41 @@ export class CategoriesController {
         ...(error instanceof EntityValidationError && { errors: error.error }),
       };
     }
-    // return this.categoriesService.create(createCategoryDto);
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.categoriesService.findAll();
-  // }
+  @Get()
+  async findAll() {
+    try {
+      const result = await this.findAllUseCase.execute();
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.categoriesService.findOne(+id);
-  // }
+      return {
+        success: true,
+        result,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: String(error),
+      };
+    }
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    try {
+      const result = await this.findOneUseCase.execute({ id: id });
+
+      return {
+        success: true,
+        result,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: String(error),
+      };
+    }
+  }
 
   // @Patch(':id')
   // update(
@@ -58,8 +96,19 @@ export class CategoriesController {
   //   return this.categoriesService.update(+id, updateCategoryDto);
   // }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.categoriesService.remove(+id);
-  // }
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    try {
+      await this.deleteUseCase.execute({ id: id });
+
+      return {
+        success: true,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: String(error),
+      };
+    }
+  }
 }

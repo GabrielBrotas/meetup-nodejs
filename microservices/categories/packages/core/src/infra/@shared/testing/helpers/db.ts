@@ -6,7 +6,7 @@ const sequelizeTestingOptions: SequelizeOptions = {
   host: "categories-test-db",
   username: "postgres",
   password: "password123",
-  database: "meetup-categories",
+  database: "categories",
   port: 5432,
   define: {
     timestamps: true,
@@ -33,7 +33,7 @@ export function setupSequelize(options: SequelizeOptions = {}) {
   });
 
   afterEach(async () => {
-    await _sequelize.drop({logging: true})
+    await _sequelize.drop({logging: false})
     await _sequelize.close();
   });
 

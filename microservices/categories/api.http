@@ -2,6 +2,7 @@
 ###
 GET http://localhost:4001/health-check
 
+
 ###
 POST http://localhost:4001/categories
 Content-Type: application/json
@@ -9,3 +10,16 @@ Content-Type: application/json
 {
     "name": "Docker"
 }
+
+
+###
+GET http://localhost:4001/categories
+
+
+###
+GET http://localhost:4001/categories/1ed06ad5-d268-499e-9f83-ea1f0c9f96e6
+
+
+###
+DELETE http://localhost:4001/categories/1ed06ad5-d268-499e-9f83-ea1f0c9f96e6
+

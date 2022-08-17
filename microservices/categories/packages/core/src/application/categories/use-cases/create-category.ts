@@ -9,6 +9,7 @@ export namespace CreateCategoryUseCase {
 
     async execute(input: Input): Promise<Output> {
       const entity = new Category(input);
+      console.log({ entity })
       await this.categoriesRepository.insert(entity);
       return CategoryOutputMapper.toOutput(entity);
     }
