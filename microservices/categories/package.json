@@ -9,7 +9,6 @@
   "scripts": {
     "prestart:dev": "npm run build --workspace=@gbrotas/categories-core",
     "start:dev": "npm run start:dev -w @gbrotas/categories-http",
-    
     "test": "jest",
     "test:core": "npm run test --workspace=@gbrotas/categories-core",
     "test:adapters": "npm run test --workspace=@gbrotas/categories-http"
@@ -22,5 +21,8 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^7.3.0"
+  },
+  "dependencies": {
+    "@nestjs/config": "^2.2.0"
   }
 }
