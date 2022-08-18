@@ -6,7 +6,7 @@ const sequelizeTestingOptions: SequelizeOptions = {
   host: "categories-test-db",
   username: "postgres",
   password: "password123",
-  database: "categories",
+  database: "postgres",
   port: 5432,
   define: {
     timestamps: true,
