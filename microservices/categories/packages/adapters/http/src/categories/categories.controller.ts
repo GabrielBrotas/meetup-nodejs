@@ -19,6 +19,7 @@ import {
   DeleteCategoryUseCase,
   UpdateCategoryUseCase,
 } from '@gbrotas/categories-core/application';
+import { ClientKafka } from '@nestjs/microservices';
 
 @Controller('categories')
 export class CategoriesController {
@@ -36,6 +37,14 @@ export class CategoriesController {
 
   @Inject(DeleteCategoryUseCase.UseCase)
   private deleteUseCase: DeleteCategoryUseCase.UseCase;
+
+
+  @Inject('KAFKA_SERVICE') 
+  private readonly kafka: ClientKafka
+
+  onModuleDestroy() {
+    this.kafka.close();
+  }
 
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
@@ -102,6 +111,11 @@ export class CategoriesController {
         id: id,
         name: updateCategoryDto.name,
       });
+      
+      this.kafka.emit("category.name_updated", {
+        id: id,
+        name: updateCategoryDto.name,
+      })
 
       return {
         success: true,
