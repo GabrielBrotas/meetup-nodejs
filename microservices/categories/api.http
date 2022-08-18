@@ -8,7 +8,7 @@ POST http://localhost:4001/categories
 Content-Type: application/json
 
 {
-    "name": "Docker"
+    "name": "Movie"
 }
 
 
@@ -17,9 +17,18 @@ GET http://localhost:4001/categories
 
 
 ###
-GET http://localhost:4001/categories/1ed06ad5-d268-499e-9f83-ea1f0c9f96e6
+GET http://localhost:4001/categories/xpto
 
 
 ###
-DELETE http://localhost:4001/categories/1ed06ad5-d268-499e-9f83-ea1f0c9f96e6
+DELETE http://localhost:4001/categories/cbba84e2-57ae-475a-a9ab-a80c4a11fb14
+
+###
+PATCH http://localhost:4001/categories/0b0a9864-a156-4298-8990-c16c893759c2
+Content-Type: application/json
+
+{
+    "name": "Docker Updated"
+}
+
 

@@ -17,6 +17,7 @@ import {
   FindAllCategoriesUseCase,
   FindOneCategoryUseCase,
   DeleteCategoryUseCase,
+  UpdateCategoryUseCase,
 } from '@gbrotas/categories-core/application';
 
 @Controller('categories')
@@ -29,6 +30,9 @@ export class CategoriesController {
 
   @Inject(FindOneCategoryUseCase.UseCase)
   private findOneUseCase: FindOneCategoryUseCase.UseCase;
+
+  @Inject(UpdateCategoryUseCase.UseCase)
+  private updateUseCase: UpdateCategoryUseCase.UseCase;
 
   @Inject(DeleteCategoryUseCase.UseCase)
   private deleteUseCase: DeleteCategoryUseCase.UseCase;
@@ -88,13 +92,28 @@ export class CategoriesController {
     }
   }
 
-  // @Patch(':id')
-  // update(
-  //   @Param('id') id: string,
-  //   @Body() updateCategoryDto: UpdateCategoryDto,
-  // ) {
-  //   return this.categoriesService.update(+id, updateCategoryDto);
-  // }
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateCategoryDto: UpdateCategoryDto,
+  ) {
+    try {
+      const result = await this.updateUseCase.execute({ 
+        id: id,
+        name: updateCategoryDto.name,
+      });
+
+      return {
+        success: true,
+        result,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: String(error),
+      };
+    }
+  }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {

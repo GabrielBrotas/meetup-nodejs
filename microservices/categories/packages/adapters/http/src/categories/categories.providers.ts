@@ -7,6 +7,7 @@ import {
   FindAllCategoriesUseCase,
   FindOneCategoryUseCase,
   DeleteCategoryUseCase,
+  UpdateCategoryUseCase
 } from '@gbrotas/categories-core/application';
 
 export namespace CATEGORY_PROVIDERS {
@@ -40,6 +41,14 @@ export namespace CATEGORY_PROVIDERS {
       provide: FindOneCategoryUseCase.UseCase,
       useFactory: (categoryRepo: ICategoryRepository.Repository) => {
         return new FindOneCategoryUseCase.UseCase(categoryRepo);
+      },
+      inject: [REPOSITORIES.CATEGORY_SEQUELIZE_REPOSITORY.provide],
+    };
+
+    export const UPDATE_CATEGORY_USE_CASE = {
+      provide: UpdateCategoryUseCase.UseCase,
+      useFactory: (categoryRepo: ICategoryRepository.Repository) => {
+        return new UpdateCategoryUseCase.UseCase(categoryRepo);
       },
       inject: [REPOSITORIES.CATEGORY_SEQUELIZE_REPOSITORY.provide],
     };

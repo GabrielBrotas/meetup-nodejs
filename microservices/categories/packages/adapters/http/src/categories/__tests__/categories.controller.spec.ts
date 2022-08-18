@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CategoriesController } from '../categories.controller';
-import { CreateCategoryUseCase, DeleteCategoryUseCase, FindAllCategoriesUseCase, FindOneCategoryUseCase } from '@gbrotas/categories-core/application';
+import { CreateCategoryUseCase, DeleteCategoryUseCase, FindAllCategoriesUseCase, FindOneCategoryUseCase, UpdateCategoryUseCase } from '@gbrotas/categories-core/application';
 import { CreateCategoryDto } from '../dto/create-category.dto';
 
 describe('CategoriesController', () => {
@@ -81,6 +81,28 @@ describe('CategoriesController', () => {
     expect({
       success: true,
       result: findOneCategoryOutput,
+    }).toStrictEqual(output);
+  })
+
+  it("should update one category", async () => {
+    const category_id = '9366b7dc-2d71-4799-b91c-c64adb205104'
+    const updateCategoryOutput: UpdateCategoryUseCase.Output = {
+        id: category_id,
+        name: 'Movie',
+    }
+
+    const mockUpdateUseCase = {
+      execute: jest.fn().mockReturnValue(Promise.resolve(updateCategoryOutput)),
+    };
+
+    //@ts-expect-error defined part of methods
+    controller['updateUseCase'] = mockUpdateUseCase;
+
+    const output = await controller.update(category_id, {name: 'Movie'});	
+    expect(mockUpdateUseCase.execute).toHaveBeenCalled();
+    expect({
+      success: true,
+      result: updateCategoryOutput,
     }).toStrictEqual(output);
   })
 
