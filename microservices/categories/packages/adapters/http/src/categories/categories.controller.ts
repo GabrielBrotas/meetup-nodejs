@@ -39,13 +39,6 @@ export class CategoriesController {
   private deleteUseCase: DeleteCategoryUseCase.UseCase;
 
 
-  @Inject('KAFKA_SERVICE') 
-  private readonly kafka: ClientKafka
-
-  onModuleDestroy() {
-    this.kafka.close();
-  }
-
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
     try {
@@ -112,11 +105,6 @@ export class CategoriesController {
         name: updateCategoryDto.name,
       });
       
-      this.kafka.emit("category.name_updated", {
-        id: id,
-        name: updateCategoryDto.name,
-      })
-
       return {
         success: true,
         result,

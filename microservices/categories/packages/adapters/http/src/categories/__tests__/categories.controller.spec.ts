@@ -100,6 +100,7 @@ describe('CategoriesController', () => {
 
     const output = await controller.update(category_id, {name: 'Movie'});	
     expect(mockUpdateUseCase.execute).toHaveBeenCalled();
+    
     expect({
       success: true,
       result: updateCategoryOutput,
