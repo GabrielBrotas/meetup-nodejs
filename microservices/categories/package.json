@@ -24,6 +24,7 @@
     "concurrently": "^7.3.0"
   },
   "dependencies": {
-    "@nestjs/config": "^2.2.0"
+    "@nestjs/config": "^2.2.0",
+    "kafkajs": "^2.2.0"
   }
 }

@@ -10,7 +10,6 @@ export abstract class Entity<Props = any> {
     } else {
       this.id = id || uuidv4();
     }
-    
   }
 
   toJSON(): Required<{ id: string } & Props> {
@@ -20,5 +19,3 @@ export abstract class Entity<Props = any> {
     } as Required<{ id: string } & Props>;
   }
 }
-
-// entity -> object

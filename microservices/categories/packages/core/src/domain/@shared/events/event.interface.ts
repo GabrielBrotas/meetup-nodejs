@@ -1,5 +1,6 @@
 
-export interface IEvent {
+export interface IDomainEvent {
     dataTimeOccurred: Date;
     eventData: any;
+    
 }
