@@ -10,9 +10,15 @@
   },
   "typesVersions": {
     ">=4.0": {
-      "application": ["./dist/application/index.d.ts"],
-      "domain": ["./dist/domain/index.d.ts"],
-      "infra": ["./dist/infra/index.d.ts"]
+      "application": [
+        "./dist/application/index.d.ts"
+      ],
+      "domain": [
+        "./dist/domain/index.d.ts"
+      ],
+      "infra": [
+        "./dist/infra/index.d.ts"
+      ]
     }
   },
   "scripts": {
@@ -24,6 +30,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bullmq": "^1.90.0",
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.1",
     "reflect-metadata": "^0.1.13",

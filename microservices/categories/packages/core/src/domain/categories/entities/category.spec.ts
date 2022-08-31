@@ -9,7 +9,7 @@ describe("Category Unit Tests", () => {
     let category = new Category({
       name: "Docker",
     });
-
+    console.log(category)
     expect(Category.validate).toHaveBeenCalled();
 
     expect(category.toJSON()).toStrictEqual({
