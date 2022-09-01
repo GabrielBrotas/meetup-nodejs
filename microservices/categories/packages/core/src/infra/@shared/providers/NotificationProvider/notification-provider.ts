@@ -6,6 +6,7 @@ export class NotificationProvider implements INotificationProvider {
 
   constructor(clientId: string, brokers: string[]) {
     this.producer = this.createProducer(clientId, brokers)
+    this.start()
   }
 
   public async start(): Promise<void> {

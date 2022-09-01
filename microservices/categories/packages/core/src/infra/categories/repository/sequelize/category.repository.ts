@@ -5,7 +5,7 @@ import { CategoryModel } from "./category.model";
 export namespace CategorySequelize {
   export class Repository implements ICategoryRepository.Repository {
     async insert(entity: Category): Promise<void> {
-      await CategoryModel.create(entity.toJSON());
+        await CategoryModel.create(entity.toJSON());
     }
 
     async findAll(): Promise<Category[]> {
@@ -24,12 +24,14 @@ export namespace CategorySequelize {
     async update(entity: Category): Promise<void> {
       await CategoryModel.update(entity.toJSON(), {
         where: { id: entity.id },
+        individualHooks: true
       });
     }
 
     async delete(id: string): Promise<void> {
       await CategoryModel.destroy({
         where: { id: id },
+        individualHooks: true
       });
     }
   }

@@ -8,7 +8,6 @@
   },
   "scripts": {
     "build": "npm run build --workspace=@gbrotas/categories-core",
-    "prestart:dev": "npm run build --workspace=@gbrotas/categories-core",
     "start:dev": "npm run start:dev -w @gbrotas/categories-http",
     "test": "jest",
     "test:core": "npm run test --workspace=@gbrotas/categories-core",
@@ -25,6 +24,7 @@
   },
   "dependencies": {
     "@nestjs/config": "^2.2.0",
+    "dotenv": "^16.0.2",
     "kafkajs": "^2.2.0"
   }
 }

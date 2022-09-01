@@ -4,15 +4,11 @@
   "description": "",
   "main": "index.js",
   "exports": {
-    "./application": "./dist/application/index.js",
     "./domain": "./dist/domain/index.js",
     "./infra": "./dist/infra/index.js"
   },
   "typesVersions": {
     ">=4.0": {
-      "application": [
-        "./dist/application/index.d.ts"
-      ],
       "domain": [
         "./dist/domain/index.d.ts"
       ],
@@ -23,8 +19,10 @@
   },
   "scripts": {
     "test": "jest",
-    "prebuild": "rm -f tsconfig.tsbuildinfo",
+    "prebuild": "rm -f tsconfig.tsbuildinfo && npm run create-index",
     "build": "concurrently \"babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored\" \"tsc --declaration --declarationDir ./dist\"",
+    "postbuild": "rm -f tsconfig.tsbuildinfo",
+    
     "precreate-index": "npx cti clean ./src",
     "create-index": "npx cti create -n -v ./src"
   },

@@ -5,23 +5,7 @@ import { CategoriesController } from './categories.controller';
 import { CATEGORY_PROVIDERS } from './categories.providers';
 
 @Module({
-  imports: [
-    ClientsModule.register([
-      {
-        name: 'KAFKA_SERVICE',
-        transport: Transport.KAFKA,
-        options: {
-          client: {
-            clientId: 'category',
-            brokers: ['kafka-broker:9092'],
-          },
-          consumer: {
-            groupId: 'category-consumer'
-          }
-        }
-      },
-    ]),
-  ],
+  imports: [],
   controllers: [CategoriesController],
   providers: [
     ...Object.values(CATEGORY_PROVIDERS.REPOSITORIES),

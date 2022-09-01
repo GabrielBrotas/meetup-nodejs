@@ -18,8 +18,7 @@ import {
   FindOneCategoryUseCase,
   DeleteCategoryUseCase,
   UpdateCategoryUseCase,
-} from '@gbrotas/categories-core/application';
-import { ClientKafka } from '@nestjs/microservices';
+} from '@gbrotas/categories-core/domain';
 
 @Controller('categories')
 export class CategoriesController {

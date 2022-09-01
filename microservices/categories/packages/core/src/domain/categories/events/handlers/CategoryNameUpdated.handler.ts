@@ -13,6 +13,7 @@ export class GategoryNameUpdated implements IEventHandle<CategoryEvents.Category
 
   setupSubscriptions(): void {
     DomainEvents.registerDomainEventHandler(this.onCategoryNameUpdated.bind(this), CategoryEvents.CategoryNameUpdated.name);
+    console.log("GategoryNameUpdated subscribed successfully")
   }
 
   private async onCategoryNameUpdated(event: CategoryEvents.CategoryNameUpdated): Promise<void> {
