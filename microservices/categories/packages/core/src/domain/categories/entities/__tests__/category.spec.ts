@@ -1,4 +1,4 @@
-import { Category } from "./category";
+import { Category } from "../category";
 
 describe("Category Unit Tests", () => {
   beforeEach(() => {

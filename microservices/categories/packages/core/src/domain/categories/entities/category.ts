@@ -1,12 +1,12 @@
 import { CategoryValidatorFactory } from "../validators";
 import { EntityValidationError } from "domain/@shared/errors";
-import { EventHandler } from "domain/@shared/events";
 import { CategoryEvents } from '../events'
+import { AggregateRoot } from "domain/@shared/entity/aggregate-root";
 export type CategoryProperties = {
   name: string;
 };
 
-export class Category extends EventHandler<CategoryProperties> {
+export class Category extends AggregateRoot<CategoryProperties> {
 
   constructor(public readonly props: CategoryProperties, id?: string) {
     super(props, id);
@@ -35,7 +35,7 @@ export class Category extends EventHandler<CategoryProperties> {
   updateName(value: string): void {
     this.name = value;
     
-    this.addDomainEvent(new CategoryEvents.CategoryUpdated({name: value}))
+    this.addDomainEvent(new CategoryEvents.CategoryNameUpdated({name: value}))
 
     Category.validate(this.props);
   }

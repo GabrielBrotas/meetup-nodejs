@@ -1,4 +1,4 @@
-import { Entity } from "./entity";
+import { Entity } from "../entity";
 import { validate as uuidValidate, v4 as uuidv4 } from "uuid";
 
 class StubEntity extends Entity<{ prop1: string; prop2: number }> {}

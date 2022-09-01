@@ -1,5 +1,5 @@
-import { CategoryModel } from "./category.model";
-import { CategorySequelize } from "./category.repository";
+import { CategoryModel } from "../category.model";
+import { CategorySequelize } from "../category.repository";
 import { Category } from "domain/categories/entities";
 import { setupSequelize } from "infra/@shared/testing";
 

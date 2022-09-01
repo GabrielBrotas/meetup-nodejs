@@ -1,1 +1,3 @@
-export * from "./db";
+// created from 'create-ts-index'
+
+export * from './db';

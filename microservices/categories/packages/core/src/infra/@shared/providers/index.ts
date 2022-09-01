@@ -1,1 +1,3 @@
-export * from './EventingProvider';
+// created from 'create-ts-index'
+
+export * from './NotificationProvider';

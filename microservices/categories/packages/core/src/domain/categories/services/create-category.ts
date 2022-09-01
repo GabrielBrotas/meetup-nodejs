@@ -1,5 +1,5 @@
-import { IUseCase } from "../../dto/use-case";
 import { ICategoryRepository } from "domain/categories/repository";
+import { IUseCase } from "domain/@shared/dto";
 import { Category } from "domain/categories/entities";
 import { CategoryOutput, CategoryOutputMapper } from "../dto";
 

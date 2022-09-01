@@ -23,8 +23,10 @@
   },
   "scripts": {
     "test": "jest",
-    "prebuild": "rm tsconfig.tsbuildinfo",
-    "build": "concurrently \"babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored\" \"tsc --declaration --declarationDir ./dist\""
+    "prebuild": "rm -f tsconfig.tsbuildinfo",
+    "build": "concurrently \"babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored\" \"tsc --declaration --declarationDir ./dist\"",
+    "precreate-index": "npx cti clean ./src",
+    "create-index": "npx cti create -n -v ./src"
   },
   "keywords": [],
   "author": "",

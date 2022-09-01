@@ -1,5 +1,5 @@
 import { ICategoryRepository } from 'domain/categories/repository';
-import { IUseCase } from '../../dto/use-case';
+import { IUseCase } from '../../@shared/dto/use-case';
 import { CategoryOutput, CategoryOutputMapper } from '../dto';
 
 export namespace FindAllCategoriesUseCase {
