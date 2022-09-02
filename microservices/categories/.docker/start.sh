@@ -1,7 +1,7 @@
-#!/bin/bash
 
 npm install
 
-tail -f /dev/null
+# tail -f /dev/null
 
-# npm run start:dev
+npm run build --workspace=@gbrotas/categories-core
+npm run start:dev

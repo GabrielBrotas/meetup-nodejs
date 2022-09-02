@@ -3,5 +3,7 @@ import { Meeting } from "../entities";
 
 export namespace IMeetingRepository {
   export interface Repository
-    extends RepositoryInterface<Meeting> {}
+    extends RepositoryInterface<Meeting> {
+      updateCategoriesName(id: string, name: string): Promise<void>
+    }
 }

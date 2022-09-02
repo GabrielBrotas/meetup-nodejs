@@ -8,7 +8,7 @@ POST http://localhost:4001/categories
 Content-Type: application/json
 
 {
-    "name": "Movie 2"
+    "name": "Programming"
 }
 
 
@@ -25,11 +25,11 @@ DELETE http://localhost:4001/categories/e9d96edf-7716-4730-8251-db0cea13a49e
 
 
 ###
-PATCH http://localhost:4001/categories/09dd8195-16bd-4d56-971d-a22545e17222
+PATCH http://localhost:4001/categories/2b41b2d9-49d3-44a8-8a0c-0ba84cb8c359
 Content-Type: application/json
 
 {
-    "name": "Docker Update 3"
+    "name": "Technology 10"
 }
 
 

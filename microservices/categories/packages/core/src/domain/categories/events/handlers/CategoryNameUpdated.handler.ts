@@ -1,12 +1,12 @@
 import { IEventHandle } from "./event-handler.interface";
-import { INotificationProvider } from "domain/@shared/providers/notification.interface";
+import { INotificationProducerProvider } from "domain/@shared/providers/notification.interface";
 import { DomainEvents } from "domain/@shared/events";
 import { CategoryEvents } from '../events'
 
 export class GategoryNameUpdated implements IEventHandle<CategoryEvents.CategoryNameUpdated> {
-  private notificationProvider: INotificationProvider;
+  private notificationProvider: INotificationProducerProvider;
 
-  constructor (_notificationProvider: INotificationProvider) {
+  constructor (_notificationProvider: INotificationProducerProvider) {
     this.setupSubscriptions();
     this.notificationProvider = _notificationProvider;
   }

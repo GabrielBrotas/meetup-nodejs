@@ -23,7 +23,7 @@ describe("Order repository test", () => {
   });
 
   it("should create a new meeting", async () => {
-    const meetingRepository = new MeetingRepository();
+    const meetingRepository = MeetingRepository.getInstance();
 
     const category_id = v4()
     const date = new Date()
@@ -45,7 +45,7 @@ describe("Order repository test", () => {
   });
 
   it("should find an meeting by id", async () => {
-    const meetingRepository = new MeetingRepository();
+    const meetingRepository = MeetingRepository.getInstance();
 
     const category_id = v4()
     const date = new Date()
@@ -65,7 +65,7 @@ describe("Order repository test", () => {
   })
 
   it("should return all meetings", async () => {
-    const meetingRepository = new MeetingRepository();
+    const meetingRepository = MeetingRepository.getInstance();
     
     const category_id = v4()
     const date = new Date()
@@ -93,7 +93,7 @@ describe("Order repository test", () => {
   })
 
   it("should delete a meeting", async () => {
-    const meetingRepository = new MeetingRepository();
+    const meetingRepository = MeetingRepository.getInstance();
     const category_id = v4()
     const date = new Date()
 
@@ -114,7 +114,7 @@ describe("Order repository test", () => {
   })
 
   it("should update a meeting", async () => {
-    const meetingRepository = new MeetingRepository();
+    const meetingRepository = MeetingRepository.getInstance();
     const category_id = v4()
     const date = new Date()
 
@@ -141,5 +141,27 @@ describe("Order repository test", () => {
     expect(meetingFound.category.name).toBe("new category")
 
     expect(meetingFound).toEqual(meeting)
+  })
+
+  it("should update a meeting category name", async () => {
+    const meetingRepository = MeetingRepository.getInstance();
+    const category_id = v4()
+    const date = new Date()
+
+    let meeting = new Meeting({ 
+      name: "Docker",
+      category_id: category_id,
+      category_name: "xpto",
+      date: date,
+    });
+
+    await meetingRepository.insert(meeting);
+
+    await meetingRepository.updateCategoriesName(category_id, 'updated_xpto')
+
+    const meetingFound = await meetingRepository.findById(meeting.id);
+
+    expect(meetingFound.category.id).toBe(category_id)
+    expect(meetingFound.category.name).toBe("updated_xpto")
   })
 });

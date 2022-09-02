@@ -1,7 +1,7 @@
-import { INotificationProvider, ISendMessageDTO } from 'domain/@shared/providers/notification.interface'
+import { INotificationProducerProvider, ISendMessageDTO } from 'domain/@shared/providers/notification.interface'
 import { Kafka, logCreator, logLevel, Producer, ProducerBatch } from 'kafkajs'
 
-export class NotificationProvider implements INotificationProvider {
+export class NotificationProducerProvider implements INotificationProducerProvider {
   private producer: Producer
 
   constructor(clientId: string, brokers: string[]) {

@@ -11,7 +11,7 @@ export class CreateMeetingController {
       const body = req.body
       
       const errors = validationResult(req);
-
+      console.log(errors, req.body)
       if (!errors.isEmpty()) {
           return res.status(400).json({ success: false, errors: errors.array() });
       }

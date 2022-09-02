@@ -35,7 +35,7 @@ export class Category extends AggregateRoot<CategoryProperties> {
   updateName(value: string): void {
     this.name = value;
     
-    this.addDomainEvent(new CategoryEvents.CategoryNameUpdated({name: value}))
+    this.addDomainEvent(new CategoryEvents.CategoryNameUpdated({name: value, id: this.id}))
 
     Category.validate(this.props);
   }

@@ -1,6 +1,5 @@
 # install core workspace dependencies 
-npm install 
-npm install 
+npm install  
 
 
 # TODO:

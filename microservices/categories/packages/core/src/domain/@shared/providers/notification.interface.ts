@@ -6,6 +6,6 @@ export type ISendMessageDTO = {
   headers?: Record<string, any>;
 }
 
-export interface INotificationProvider {
+export interface INotificationProducerProvider {
   sendMessage(data: ISendMessageDTO): Promise<void>;
 }

@@ -3,6 +3,19 @@ import { IMeetingRepository } from "domain/meetings/repository";
 import { MeetingModel } from "./meeting.model"
 
 export class MeetingRepository implements IMeetingRepository.Repository {
+
+  private static INSTANCE: MeetingRepository;
+
+  private constructor() {}
+
+  public static getInstance() {
+    if(!MeetingRepository.INSTANCE) {
+      MeetingRepository.INSTANCE = new MeetingRepository()
+    }
+
+    return MeetingRepository.INSTANCE
+  }
+
   async insert(entity: Meeting): Promise<void> {
     await MeetingModel.create(entity.toJSON());
   }
@@ -30,9 +43,21 @@ export class MeetingRepository implements IMeetingRepository.Repository {
   }
 
   async delete(id: string): Promise<void> {
-      await MeetingModel.destroy({
-        where: { id: id }
-      })
+    await MeetingModel.destroy({
+      where: { id: id }
+    })
+  }
+
+  async updateCategoriesName(id: string, name: string): Promise<void> {
+    console.log({id, name})
+    await MeetingModel.update(
+      {
+        category_name: name
+      }, 
+      {
+        where: { category_id: String(id) }
+      }
+    )
   }
 }
 

@@ -1,0 +1,31 @@
+
+###
+GET http://localhost:4000/health-check
+
+
+###
+POST http://localhost:4000/meetings
+Content-Type: application/json
+
+{
+  "name": "Docker to everyone",
+  "category_id": "2b41b2d9-49d3-44a8-8a0c-0ba84cb8c359",
+  "category_name": "Programming",
+  "date": "2022-09-02T01:12:42.702Z"
+}
+
+
+###
+GET http://localhost:4000/meetings
+
+
+###
+GET http://localhost:4000/meetings/984c39d7-70e0-49c0-9969-2495bc152959
+
+
+###
+DELETE http://localhost:4000/meetings/984c39d7-70e0-49c0-9969-2495bc152959
+
+
+###
+
