@@ -37,7 +37,6 @@ export class CategoriesController {
   @Inject(DeleteCategoryUseCase.UseCase)
   private deleteUseCase: DeleteCategoryUseCase.UseCase;
 
-
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
     try {
@@ -99,11 +98,11 @@ export class CategoriesController {
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
     try {
-      const result = await this.updateUseCase.execute({ 
+      const result = await this.updateUseCase.execute({
         id: id,
         name: updateCategoryDto.name,
       });
-      
+
       return {
         success: true,
         result,

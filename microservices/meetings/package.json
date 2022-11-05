@@ -2,7 +2,7 @@
   "name": "meetings",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/infra/server/http/entrypoint.js",
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "test": "jest",
@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",

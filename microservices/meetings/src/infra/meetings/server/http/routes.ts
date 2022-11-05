@@ -24,7 +24,6 @@ export const meetingsRouter = () => {
   meetingsRouter.post("/", 
     body('name').isString(),
     body('category_id').isString(),
-    body('category_name').isString(),
     body('date').toDate().notEmpty(),
     body('participants_username').isArray().optional(),
     body('duration_min').isInt().optional(),

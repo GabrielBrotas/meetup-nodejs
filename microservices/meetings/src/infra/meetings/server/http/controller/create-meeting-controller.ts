@@ -11,7 +11,7 @@ export class CreateMeetingController {
       const body = req.body
       
       const errors = validationResult(req);
-      console.log(errors, req.body)
+
       if (!errors.isEmpty()) {
           return res.status(400).json({ success: false, errors: errors.array() });
       }
@@ -21,7 +21,6 @@ export class CreateMeetingController {
       const meetings = await createMeetingUseCase.execute({
         name: body.name,
         category_id: body.category_id,
-        category_name: body.category_name,
         date: body.date,
         participants_username: body.participants_username,
         duration_min: body.duration_min
@@ -32,6 +31,7 @@ export class CreateMeetingController {
         result: meetings
       })
     } catch(error) {
+      console.log(error)
       return res.status(400).json({
         success: false,
         message: error.message ? error.message : String(error)

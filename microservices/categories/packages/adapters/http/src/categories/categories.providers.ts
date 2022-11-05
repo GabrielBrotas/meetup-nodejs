@@ -7,7 +7,7 @@ import {
   FindAllCategoriesUseCase,
   FindOneCategoryUseCase,
   DeleteCategoryUseCase,
-  UpdateCategoryUseCase
+  UpdateCategoryUseCase,
 } from '@gbrotas/categories-core/domain';
 
 export namespace CATEGORY_PROVIDERS {

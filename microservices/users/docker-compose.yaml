@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  users:
+    depends_on:
+      - users-db
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: users-svc
+    ports:
+      - 4002:4002
+    volumes:
+      - .:/app
+
+  users-db:
+    image: postgres:13.1-alpine
+    container_name: users-db
+    restart: always
+    tty: true
+    ports:
+      - '5434:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=postgres
+    volumes:
+      - .docker/db:/var/lib/postgresql/data
+
+  users-db-test:
+    image: postgres:13.1-alpine
+    container_name: users-db-test
+    restart: always
+    tty: true
+    ports:
+      - '5435:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=postgres
+    volumes:
+      - .docker/test_db:/var/lib/postgresql/data

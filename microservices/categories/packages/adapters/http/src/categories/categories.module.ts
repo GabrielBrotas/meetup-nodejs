@@ -24,4 +24,4 @@ import { CATEGORY_PROVIDERS } from './categories.providers';
     // },
   ],
 })
-export class CategoriesModule {}
+export class CategoriesModule { }

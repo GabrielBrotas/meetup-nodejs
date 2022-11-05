@@ -1,5 +1,4 @@
 import express from 'express'
-import { setupMeetingListeners } from 'infra/meetings/server/http/listeners'
 import { meetingsRouter } from 'infra/meetings/server/http/routes'
 import { hostname } from 'os'
 import { sync_db } from '../db'
@@ -21,13 +20,19 @@ async function main() {
   
   const PORT = process.env.PORT || 4000
   
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.log(`App running on port 4000`)
+  })
+
+  process.on('SIGTERM', () => {
+    console.log('server ending',  new Date().toISOString())
+    server.close(() => process.exit())
   })
 }
 
 main()
   .catch(err => {
     console.log('backend failed to start up ,', err)
-    process.exit(1)
+    process.exit()
   })
+  

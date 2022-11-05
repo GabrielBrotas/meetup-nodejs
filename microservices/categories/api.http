@@ -25,11 +25,11 @@ DELETE http://localhost:4001/categories/e9d96edf-7716-4730-8251-db0cea13a49e
 
 
 ###
-PATCH http://localhost:4001/categories/2b41b2d9-49d3-44a8-8a0c-0ba84cb8c359
+PATCH http://localhost:4001/categories/0a046e0a-c26b-4da8-87e7-a44b46d1faee
 Content-Type: application/json
 
 {
-    "name": "Technology 10"
+    "name": "Technology 11"
 }
 
 

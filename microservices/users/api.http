@@ -1,0 +1,4 @@
+GET http://localhost:4002/health-check
+
+###
+GET http://localhost:4002/users
