@@ -22,7 +22,6 @@
     "prebuild": "rm -f tsconfig.tsbuildinfo && npm run create-index",
     "build": "concurrently \"babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored\" \"tsc --declaration --declarationDir ./dist\"",
     "postbuild": "rm -f tsconfig.tsbuildinfo",
-    
     "precreate-index": "npx cti clean ./src",
     "create-index": "npx cti create -n -v ./src"
   },

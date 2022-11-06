@@ -2,10 +2,8 @@ FROM node:16.13.0-slim as builder
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY tsconfig.json ./
-COPY babel.config.js ./
-COPY src ./src
+COPY package.json tsconfig.base.json ./
+COPY packages ./packages
 RUN npm install
 RUN npm run build
 
@@ -13,11 +11,16 @@ FROM node:16.13.0-slim
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
-RUN npm install --only=production
-COPY --from=builder /usr/src/app/dist .
-RUN npm install pm2 -g
+COPY package*.json ./
 
-EXPOSE 4000
+COPY --from=builder /usr/src/app/packages/core/dist ./packages/core/dist
+COPY --from=builder /usr/src/app/packages/core/package*.json ./packages/core/
 
-CMD ["pm2-runtime","infra/server/http/server.js"]
+COPY --from=builder /usr/src/app/packages/adapters/http/dist ./packages/adapters/http/dist
+COPY --from=builder /usr/src/app/packages/adapters/http/package*.json ./packages/adapters/http/
+
+RUN npm install --only=production --silent
+
+EXPOSE 4001
+
+CMD ["npm", "run", "start:prod"]
