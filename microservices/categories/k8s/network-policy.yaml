@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: kafka-network-policy
-  namespace: kafka
+  name: categories-network-policy
+  namespace: categories
 spec:
   podSelector:
     matchLabels:
