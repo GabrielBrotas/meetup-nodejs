@@ -14,18 +14,19 @@ kafka_up:
 	kustomize build infrastructure/modules/kafka-operator | kubectl -n kafka apply -f -
 	kustomize build infrastructure/modules/kafka-cluster | kubectl -n kafka apply -f -
 
-build_images:
+publish_images:
 	eval $(minikube docker-env)
 
 	# Meetings
-	docker build -t gbrotas/meetup-meetings:latest -f microservices/meetings/Dockerfile.prod microservices/meetings
-	# kustomize build ./microservices/meetings/k8s | kubectl -n meetings apply -f -
+	docker build -t gbrotas/meetup-meetings:1.0.2 -f microservices/meetings/Dockerfile.prod microservices/meetings
+	docker push gbrotas/meetup-meetings:1.0.2
 
 	# Categories
 	docker build -t gbrotas/meetup-categories:1.0.2 -f microservices/categories/Dockerfile.prod microservices/categories
-	# kustomize build ./microservices/categories/k8s | kubectl -n categories apply -f -
+	docker push gbrotas/meetup-categories:1.0.2
 
-all_up: k8s_up argo_up kafka_up build_images
+	
+all_up: k8s_up argo_up kafka_up publish_images
 	echo "Done !"
 
 clean_up:
