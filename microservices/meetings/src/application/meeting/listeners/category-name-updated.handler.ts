@@ -16,7 +16,7 @@
 
 import { IListenerHandler } from "application/dto/listener";
 import { IMeetingRepository } from "domain/meetings/repository";
-import { INotificationConsumerProvider, INotificationMessage } from "infra/@shared/providers/NotificationProvider/notification-provider.interface";
+import { INotificationConsumerProvider } from "infra/@shared/providers/NotificationProvider/notification-provider.interface";
 import { CATEGORY_NAME_UPDATED } from "./topics";
 
 export class CategoryNameUpdatedListener implements IListenerHandler {

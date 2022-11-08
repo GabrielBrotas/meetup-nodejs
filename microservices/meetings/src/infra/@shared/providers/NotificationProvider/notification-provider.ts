@@ -3,16 +3,19 @@ import { INotificationConsumerProvider, INotificationMessage } from './notificat
 
 export class NotificationConsumerProvider implements INotificationConsumerProvider {
   private consumer: Consumer
+  isRunning: boolean = false
 
   constructor(groupId: string, brokers: string[]) {
     this.consumer = this.createConsumer(groupId, brokers)
-    this.start()
   }
 
   public async start(): Promise<void> {
+    if(!this.consumer) return
     try {
       console.log('starting consumer')
       await this.consumer.connect()
+      console.log('consumer started')
+      this.isRunning = true
     } catch (error) {
       console.log('Error connecting the producer: ', error)
     }
@@ -31,27 +34,43 @@ export class NotificationConsumerProvider implements INotificationConsumerProvid
         await callback(JSON.parse(message.value.toString()))
           .catch(err => {console.log(`error = `, err)})
       },
-  })
+    })
   }
 
   private createConsumer(groupdId: string, brokers: string[]): Consumer {
+    console.log({groupdId, brokers})
+    if(!groupdId || !brokers) {
+      console.error("Invalid groupdId and brokers combination.")
+      return;
+    }
+
+    console.log("Creating kafka instance...")
+
     const kafka = new Kafka({
       clientId: groupdId,
       brokers,
       retry: {
-        retries: 3
+        maxRetryTime: 10000,
+        initialRetryTime: 1000,
+        factor: 0.2,
+        multiplier: 2,
+        retries: Infinity
       },
       logLevel: logLevel.INFO,
     })
 
+    console.log("Kafka instance created")
 
     return kafka.consumer({
       groupId: groupdId,
       allowAutoTopicCreation: true,
       retry: {
-        retries: 3,
-      },
+        maxRetryTime: 10000,
+        initialRetryTime: 1000,
+        factor: 0.2,
+        multiplier: 2,
+        retries: Infinity
+      }
     })
   }
-
 }

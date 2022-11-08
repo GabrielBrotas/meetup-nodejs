@@ -3,13 +3,15 @@ import { notificationConfig } from "infra/@shared/config/notification";
 import { NotificationConsumerProvider } from "infra/@shared/providers/NotificationProvider/notification-provider";
 import { MeetingRepository } from "infra/meetings/repository/sequelize";
 
-export function setupMeetingListeners() {
+export async function setupMeetingListeners() {
   const meetingsRepository = MeetingRepository.getInstance()
 
   const notificationConsumerProvider = new NotificationConsumerProvider(
-    notificationConfig.clientId, 
+    notificationConfig.groupId, 
     notificationConfig.kafkaBrokers
   )
+  await notificationConsumerProvider.start()
   
-  new CategoryNameUpdatedListener(meetingsRepository, notificationConsumerProvider).listen()
+  const categoryNameUpdatedListener = new CategoryNameUpdatedListener(meetingsRepository, notificationConsumerProvider)
+  categoryNameUpdatedListener.listen()
 }
