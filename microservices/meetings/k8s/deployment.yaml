@@ -39,4 +39,4 @@ spec:
           - name: kafka_brokers
             value: 'my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092'
           - name: category_url
-            value: 'http://categories-svc:4001'
+            value: 'http://categories-svc.categories.svc.cluster.local:4001'
