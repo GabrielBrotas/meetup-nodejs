@@ -10,6 +10,6 @@ spec:
   type: ClusterIP
   ports:
     - name: categories-svc
-      port: 4000
-      targetPort: 4000
+      port: 4001
+      targetPort: 4001
       protocol: TCP
