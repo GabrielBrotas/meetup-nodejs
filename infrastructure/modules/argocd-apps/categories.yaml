@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: meetup-categories
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: meetup-categories
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/GabrielBrotas/meetup-microservices 
+    targetRevision: HEAD 
+    path: microservices/categories/k8s  
+
+    kustomize:
+      version: v4.5.7
+      namePrefix: dev-
+      commonLabels:
+        project: meetup
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: categories
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:     
+    - Validate=false 
+    - CreateNamespace=true 
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true 
+
+    retry:
+      limit: 5 
+      backoff:
+        duration: 5s
+        factor: 2 
+        maxDuration: 3m

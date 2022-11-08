@@ -11,6 +11,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: apps
-    repoURL: https://github.com/argoproj/argocd-example-apps
+    path: infrastructure/modules/argocd-apps
+    repoURL: https://github.com/GabrielBrotas/meetup-microservices
     targetRevision: HEAD

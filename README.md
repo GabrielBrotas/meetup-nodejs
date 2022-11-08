@@ -42,6 +42,8 @@ kustomize build infrastructure/modules/argocd/overlays | kubectl -n argocd delet
 kustomize build ./microservices/meetings/k8s | kubectl -n meetings delete -f -
 kustomize build infrastructure/modules/kafka-operator | kubectl -n kafka delete -f -
 kustomize build infrastructure/modules/kafka-cluster | kubectl -n kafka delete -f -
+kustomize build ./microservices/categories/k8s | kubectl -n categories delete -f -
+kustomize build ./microservices/meetings/k8s | kubectl -n meetings delete -f -
 ```
 
 ## Refs:
