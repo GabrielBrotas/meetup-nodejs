@@ -31,8 +31,12 @@ docker build -t gbrotas/meetup-meetings:latest -f microservices/meetings/Dockerf
 docker push gbrotas/meetup-meetings:latest
 
 # Categories
-docker build -t gbrotas/meetup-categories:latest -f microservices/categories/Dockerfile.prod microservices/categories
-docker push gbrotas/meetup-categories:latest
+export CATEGORY_VERSION='1.0.3'
+docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
+    -t gbrotas/meetup-categories:latest \
+    -f microservices/categories/Dockerfile.prod microservices/categories
+
+docker push gbrotas/meetup-categories --all-tags
 ```
 
 ### clean up
@@ -47,3 +51,5 @@ https://github.com/jkayani/avp-demo-kubecon-2021
 - sonarcloud
 - categories/meetings retry policies when db/kafka cannot be reached
 - create app variants
+- argocd repository credentials
+-
