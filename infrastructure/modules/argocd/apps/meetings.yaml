@@ -16,7 +16,6 @@ spec:
     path: microservices/meetings/k8s  
 
     kustomize:
-      namePrefix: dev-
       commonLabels:
         project: meetup
 
