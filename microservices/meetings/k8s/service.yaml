@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: meetings-svc
+
+spec:
+  selector:
+    app: meetup-meetings
+  
+  type: ClusterIP
+  ports:
+    - name: meetings-svc
+      port: 4000
+      targetPort: 4000
+      protocol: TCP
