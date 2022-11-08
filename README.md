@@ -4,15 +4,18 @@
 - minikube
 - kubectl
 
-## How to run
+## How to run - Manual
 ```sh
 minikube start
 
 # Argo
-kustomize build infrastructure/modules/argocd/overlays | kubectl -n argocd apply -f -
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
-kubectl port-forward svc/argocd-server -n argocd 8080:443
+kustomize build infrastructure/modules/argocd/overlays | kubectl -n argocd apply -f - # build image
+kubectl wait --for=condition=ready pod -l  app.kubernetes.io/name=argocd-server # wait argo be deployed
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo # get password
+kubectl -n argocd apply -f infrastructure/modules/argocd/app-of-apps.yaml # deploy app of apps
 
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+	kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 # Kafka
 kustomize build infrastructure/modules/kafka-operator | kubectl -n kafka apply -f -
 kustomize build infrastructure/modules/kafka-cluster | kubectl -n kafka apply -f -

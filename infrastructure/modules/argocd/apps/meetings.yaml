@@ -1,29 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: meetup-categories
+  name: meetup-meetings
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   labels:
-    name: meetup-categories
+    name: meetup-meetings
 spec:
   project: default
 
   source:
     repoURL: https://github.com/GabrielBrotas/meetup-microservices 
-    targetRevision: HEAD 
-    path: microservices/categories/k8s  
+    targetRevision: HEAD
+    path: microservices/meetings/k8s  
 
     kustomize:
-      version: v4.5.7
       namePrefix: dev-
       commonLabels:
         project: meetup
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: categories
+    namespace: meetings
 
   syncPolicy:
     automated:
