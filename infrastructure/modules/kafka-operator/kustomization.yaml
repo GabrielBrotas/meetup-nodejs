@@ -3,5 +3,4 @@ kind: Kustomization
 
 resources:
 - ./namespace.yaml
-- https://strimzi.io/install/latest?namespace=kafka # k8s operator
-- https://strimzi.io/examples/latest/kafka/kafka-persistent-single.yaml
+- https://strimzi.io/install/latest?namespace=kafka

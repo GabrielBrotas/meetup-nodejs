@@ -14,13 +14,12 @@ kubectl wait --for=condition=ready pod -l  app.kubernetes.io/name=argocd-server 
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo # get password
 kubectl -n argocd apply -f infrastructure/modules/argocd/app-of-apps.yaml # deploy app of apps
 
-kubectl port-forward svc/argocd-server -n argocd 8080:443
-	kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+
 # Kafka
 kustomize build infrastructure/modules/kafka-operator | kubectl -n kafka apply -f -
 kustomize build infrastructure/modules/kafka-cluster | kubectl -n kafka apply -f -
 
-kubectl wait kafka/my-cluster --for=condition=Ready --timeout=300s -n kafka  # wait connection
+
 
 # test kafka connection
 kubectl -n meetings run kafka-producer -ti --image=quay.io/strimzi/kafka:0.32.0-kafka-3.3.1 --rm=true --restart=Never -- bin/kafka-console-producer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic # producer
@@ -54,4 +53,5 @@ https://github.com/jkayani/avp-demo-kubecon-2021
 
 ## Todo:
 - sonarcloud
+- categories retry policies when db cannot be reached
 - create app variants
