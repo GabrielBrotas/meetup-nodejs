@@ -7,6 +7,8 @@
 ## How to run
 ```sh
 minikube start
+# minikube addons enable ingress
+
 make argocd_up
 ```
 
@@ -27,16 +29,38 @@ kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.32.0-kaf
 ### Build Images
 ```sh
 # Meetings
-docker build -t gbrotas/meetup-meetings:latest -f microservices/meetings/Dockerfile.prod microservices/meetings
-docker push gbrotas/meetup-meetings:latest
+export MEETINGS_VERSION='1.0.5'
+
+docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
+    -t gbrotas/meetup-meetings:latest \
+    -f microservices/meetings/Dockerfile.prod microservices/meetings
+docker push gbrotas/meetup-meetings --all-tags
 
 # Categories
-export CATEGORY_VERSION='1.0.3'
+export CATEGORY_VERSION='1.0.5'
 docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
     -t gbrotas/meetup-categories:latest \
     -f microservices/categories/Dockerfile.prod microservices/categories
 
 docker push gbrotas/meetup-categories --all-tags
+```
+
+## Keycloack
+```sh
+kubectl apply -f https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/20.0.1/kubernetes-examples/keycloak.yaml
+
+# ingress:
+wget -q -O - https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak-ingress.yaml | \
+sed "s/KEYCLOAK_HOST/keycloak.$(minikube ip).nip.io/" | \
+kubectl create -f -
+
+# get ingress url:
+KEYCLOAK_URL=https://keycloak.$(minikube ip).nip.io &&
+echo "" &&
+echo "Keycloak:                 $KEYCLOAK_URL" &&
+echo "Keycloak Admin Console:   $KEYCLOAK_URL/admin" &&
+echo "Keycloak Account Console: $KEYCLOAK_URL/realms/myrealm/account" &&
+echo ""
 ```
 
 ### clean up

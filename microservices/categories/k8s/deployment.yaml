@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: meetup-categories
-        image: gbrotas/meetup-categories:1.0.3
+        image: gbrotas/meetup-categories:1.0.5
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80

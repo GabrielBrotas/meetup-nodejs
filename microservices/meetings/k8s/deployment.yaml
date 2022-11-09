@@ -17,9 +17,8 @@ spec:
     spec:
       containers:
       - name: meetup-meetings
-        image: gbrotas/meetup-meetings:1.0.3
+        image: gbrotas/meetup-meetings:1.0.5
         imagePullPolicy: IfNotPresent
-        # imagePullPolicy: Never
         ports:
         - containerPort: 80
         resources: {}
