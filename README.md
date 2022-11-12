@@ -29,44 +29,24 @@ kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.32.0-kaf
 
 ### Build Images
 ```sh
+# Categories
+export CATEGORY_VERSION='1.0.8'
+docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
+    -t gbrotas/meetup-categories:latest \
+    -f microservices/categories/Dockerfile.prod microservices/categories
+
+docker push gbrotas/meetup-categories --all-tags
+
 # Meetings
 export MEETINGS_VERSION='1.0.8'
 
 docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
     -t gbrotas/meetup-meetings:latest \
     -f microservices/meetings/Dockerfile.prod microservices/meetings
+
 docker push gbrotas/meetup-meetings --all-tags
-
-# Categories
-export CATEGORY_VERSION='1.0.8'
-docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
-    -t gbrotas/meetup-categories:latest \
-    -f microservices/categories/Dockerfile.prod microservices/categories
-docker push gbrotas/meetup-categories --all-tags
 ```
 
-## Keycloack
-```sh
-kubectl apply -f https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/20.0.1/kubernetes-examples/keycloak.yaml
-
-# ingress:
-wget -q -O - https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak-ingress.yaml | \
-sed "s/KEYCLOAK_HOST/keycloak.$(minikube ip).nip.io/" | \
-kubectl create -f -
-
-# get ingress url:
-KEYCLOAK_URL=https://keycloak.$(minikube ip).nip.io &&
-echo "" &&
-echo "Keycloak:                 $KEYCLOAK_URL" &&
-echo "Keycloak Admin Console:   $KEYCLOAK_URL/admin" &&
-echo "Keycloak Account Console: $KEYCLOAK_URL/realms/myrealm/account" &&
-echo ""
-```
-
-## Sealed Secrets
-```sh
-kubeseal --fetch-cert > public-cert.pem # get sealed secret public cert
-```
 ### clean up
 ```sh
 make argocd_down
@@ -81,3 +61,5 @@ https://github.com/jkayani/avp-demo-kubecon-2021
 - [X] create app variants
 - [ ] argocd rollout
 - [ ] secrets
+- [ ] service mesh?
+- [ ] opentelemetry/datadog?/prometheus?/
