@@ -3,7 +3,3 @@ kind: Kustomization
 
 resources:
 - https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.16.0/controller.yaml
-
-patchesStrategicMerge:
-  - argocd-cm.yaml
-  - argocd-repo-server.yaml
