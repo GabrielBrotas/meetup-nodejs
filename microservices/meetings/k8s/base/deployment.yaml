@@ -24,7 +24,7 @@ spec:
         resources: {}
         env:
           - name: ENVIRONMENT
-            value: prod
+            value: local
           - name: DB_HOST
             value: postgres
           - name: DB_USER

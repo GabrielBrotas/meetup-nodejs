@@ -22,6 +22,12 @@ spec:
         - containerPort: 80
         resources: {}
         env:
+          - name: ENVIRONMENT
+            value: local
+          - name: DB_USER
+            value: admin
+          - name: DB_PASS
+            value: psltest
           - name: DB_NAME
             value: postgresdb
           - name: DB_HOST
@@ -32,3 +38,5 @@ spec:
             value: postgres
           - name: kafka_clientID
             value: categories
+          - name: kafka_brokers
+            value: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
