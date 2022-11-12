@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/GabrielBrotas/meetup-microservices 
     targetRevision: HEAD
-    path: microservices/categories/k8s  
+    path: microservices/categories/k8s/overlays/local 
 
     kustomize:
       commonLabels:

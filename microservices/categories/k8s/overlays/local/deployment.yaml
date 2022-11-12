@@ -2,28 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: meetup-categories
-  labels:
-    app: meetup-categories
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: meetup-categories
   template:
-    metadata:
-      labels:
-        app: meetup-categories
     spec:
       containers:
       - name: meetup-categories
         image: gbrotas/meetup-categories:1.0.6
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 80
         resources: {}
         env:
           - name: ENVIRONMENT
-            value: prod
+            value: local
           - name: DB_USER
             value: admin
           - name: DB_PASS
