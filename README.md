@@ -3,6 +3,7 @@
 ## Requirements:
 - minikube
 - kubectl
+- kubeseal
 
 ## How to run
 ```sh
@@ -29,7 +30,7 @@ kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.32.0-kaf
 ### Build Images
 ```sh
 # Meetings
-export MEETINGS_VERSION='1.0.6'
+export MEETINGS_VERSION='1.0.8'
 
 docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
     -t gbrotas/meetup-meetings:latest \
@@ -37,11 +38,10 @@ docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
 docker push gbrotas/meetup-meetings --all-tags
 
 # Categories
-export CATEGORY_VERSION='1.0.6'
+export CATEGORY_VERSION='1.0.8'
 docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
     -t gbrotas/meetup-categories:latest \
     -f microservices/categories/Dockerfile.prod microservices/categories
-
 docker push gbrotas/meetup-categories --all-tags
 ```
 
@@ -63,6 +63,10 @@ echo "Keycloak Account Console: $KEYCLOAK_URL/realms/myrealm/account" &&
 echo ""
 ```
 
+## Sealed Secrets
+```sh
+kubeseal --fetch-cert > public-cert.pem # get sealed secret public cert
+```
 ### clean up
 ```sh
 make argocd_down
@@ -72,9 +76,8 @@ make argocd_down
 https://github.com/jkayani/avp-demo-kubecon-2021
 
 ## Todo:
-- sonarcloud
-- categories/meetings retry policies when db/kafka cannot be reached
-- create app variants
-- argocd repository credentials
-- argocd rollout
-- secrets
+- [ ] sonarcloud?
+- [X] categories/meetings retry policies when db/kafka cannot be reached
+- [X] create app variants
+- [ ] argocd rollout
+- [ ] secrets

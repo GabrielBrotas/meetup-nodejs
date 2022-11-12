@@ -14,6 +14,7 @@ async function main() {
   app.get('/health-check', (req, res) => {
     return res.status(200).json({
       success: true,
+      version: '1.0.8',
       hostname: hostname()
     })
   })
