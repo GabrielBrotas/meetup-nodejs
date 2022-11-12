@@ -37,17 +37,17 @@ export class NotificationConsumerProvider implements INotificationConsumerProvid
     })
   }
 
-  private createConsumer(groupdId: string, brokers: string[]): Consumer {
-    console.log({groupdId, brokers})
-    if(!groupdId || !brokers) {
-      console.error("Invalid groupdId and brokers combination.")
+  private createConsumer(groupId: string, brokers: string[]): Consumer {
+    console.log({groupId, brokers})
+    if(!groupId || !brokers) {
+      console.error("Invalid groupId and brokers combination.")
       return;
     }
 
     console.log("Creating kafka instance...")
 
     const kafka = new Kafka({
-      clientId: groupdId,
+      clientId: groupId,
       brokers,
       retry: {
         maxRetryTime: 10000,

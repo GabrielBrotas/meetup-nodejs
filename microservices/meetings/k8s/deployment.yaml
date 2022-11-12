@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: meetup-meetings
-        image: gbrotas/meetup-meetings:1.0.5
+        image: gbrotas/meetup-meetings:1.0.6
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -33,7 +33,7 @@ spec:
             value: psltest
           - name: DB_NAME
             value: postgresdb
-          - name: kafka_groupID
+          - name: kafka_groupId
             value: meetings
           - name: kafka_brokers
             value: 'my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092'

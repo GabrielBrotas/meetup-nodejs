@@ -6,7 +6,7 @@
 
 ## How to run
 ```sh
-minikube start
+minikube start --memory 4000 --cpus 2
 # minikube addons enable ingress
 
 make argocd_up
@@ -29,7 +29,7 @@ kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.32.0-kaf
 ### Build Images
 ```sh
 # Meetings
-export MEETINGS_VERSION='1.0.5'
+export MEETINGS_VERSION='1.0.6'
 
 docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
     -t gbrotas/meetup-meetings:latest \
@@ -37,7 +37,7 @@ docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
 docker push gbrotas/meetup-meetings --all-tags
 
 # Categories
-export CATEGORY_VERSION='1.0.5'
+export CATEGORY_VERSION='1.0.6'
 docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
     -t gbrotas/meetup-categories:latest \
     -f microservices/categories/Dockerfile.prod microservices/categories
@@ -76,4 +76,5 @@ https://github.com/jkayani/avp-demo-kubecon-2021
 - categories/meetings retry policies when db/kafka cannot be reached
 - create app variants
 - argocd repository credentials
--
+- argocd rollout
+- secrets
