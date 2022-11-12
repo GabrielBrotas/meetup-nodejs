@@ -62,7 +62,7 @@ export class NotificationConsumerProvider implements INotificationConsumerProvid
     console.log("Kafka instance created")
 
     return kafka.consumer({
-      groupId: groupdId,
+      groupId: groupId,
       allowAutoTopicCreation: true,
       retry: {
         maxRetryTime: 10000,
