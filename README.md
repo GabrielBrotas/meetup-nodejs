@@ -6,9 +6,14 @@
 - kubeseal
 
 ## How to run
+1. create a `infrastructure/modules/argocd/overlays/repository-secret.yaml` file using `repository-secret.example.yaml` as template and fill out the proper values
+
+2.
 ```sh
 minikube start --memory 4000 --cpus 2
-# minikube addons enable ingress
+
+minikube addons enable ingress
+kubectl get pods -n ingress-nginx # verify if nginx controller is running
 
 make argocd_up
 ```
