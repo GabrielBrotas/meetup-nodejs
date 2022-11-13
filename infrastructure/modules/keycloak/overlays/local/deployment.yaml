@@ -14,7 +14,7 @@ spec:
         resources: {}
         env:
         - name: KC_DB
-          values: postgres
+          value: postgres
         - name: KC_DB_URL_HOST
           value: postgres
         - name: KC_DB_USERNAME
