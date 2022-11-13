@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: meetup-categories
-  type: ClusterIP
+  type: NodePort
   ports:
     - name: categories-svc
       port: 4001

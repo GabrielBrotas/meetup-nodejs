@@ -15,6 +15,10 @@ minikube start --memory 4000 --cpus 2
 minikube addons enable ingress
 kubectl get pods -n ingress-nginx # verify if nginx controller is running
 
+minikube ip # get ip address
+# Add the following line to the bottom of the /etc/hosts file on your computer (you will need administrator access):
+<minikube ip address> hello-world.info
+
 make argocd_up
 ```
 

@@ -7,7 +7,7 @@ spec:
   selector:
     app: meetup-meetings
   
-  type: ClusterIP
+  type: NodePort
   ports:
     - name: meetings-svc
       port: 4000
