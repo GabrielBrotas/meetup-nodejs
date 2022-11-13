@@ -56,6 +56,13 @@ docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
 docker push gbrotas/meetup-meetings --all-tags
 ```
 
+## Keycloak
+```sh
+kubectl create -f https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak.yaml
+kubectl patch svc keycloak -p '{"spec": {"type": "ClusterIP"}}'
+kubectl port-forward svc/keycloak 8080:8080 
+```
+
 ### clean up
 ```sh
 make argocd_down
