@@ -6,7 +6,7 @@ metadata:
   labels:
     app: postgres
 data:
-  POSTGRES_DB: postgresdb
+  POSTGRES_DB: keycloak
   POSTGRES_USER: admin
   POSTGRES_PASSWORD: psltest
 ---
@@ -65,10 +65,10 @@ spec:
                 name: postgres-config
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: postgredb
+              name: keycloak
           resources: {}
       volumes:
-        - name: postgredb
+        - name: keycloak
           persistentVolumeClaim:
             claimName: postgres-pv-claim
 ---
