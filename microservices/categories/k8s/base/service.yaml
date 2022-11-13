@@ -7,7 +7,7 @@ spec:
     app: meetup-categories
   type: NodePort
   ports:
-    - name: categories-svc
+    - name: http
       port: 4001
       targetPort: 4001
       protocol: TCP
