@@ -13,7 +13,7 @@ data:
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: postgres-keycloak  # Sets PV's name
+  name: postgres-pv-volume-3  # Sets PV's name
   labels:
     type: local  # Sets PV's type to local
     app: postgres
@@ -29,7 +29,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: postgres-keycloak-claim  # Sets name of PVC
+  name: postgres-pv-claim  # Sets name of PVC
   labels:
     app: postgres
 spec:
