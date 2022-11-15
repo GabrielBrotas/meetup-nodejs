@@ -17,6 +17,7 @@ make argocd_up
 
 *forward ports*
 ```sh
+kubectl port-forward svc/keycloak -n keycloak 8081:8080
 kubectl port-forward svc/meetings-svc -n meetings 4000:4000
 kubectl port-forward svc/categories-svc -n categories 4000:4000
 ```
@@ -47,13 +48,6 @@ docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
     -f microservices/meetings/Dockerfile.prod microservices/meetings
 
 docker push gbrotas/meetup-meetings --all-tags
-```
-
-## Keycloak
-```sh
-kubectl create -f https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak.yaml
-kubectl patch svc keycloak -p '{"spec": {"type": "ClusterIP"}}'
-kubectl port-forward svc/keycloak 8080:8080 
 ```
 
 ### clean up

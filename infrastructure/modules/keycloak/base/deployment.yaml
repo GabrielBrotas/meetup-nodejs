@@ -26,6 +26,8 @@ spec:
           value: "admin"
         - name: KC_PROXY
           value: "edge"
+        - name: KC_HEALTH_ENABLED
+          value: 'true'
         
         ports:
         - name: http
