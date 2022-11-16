@@ -10,7 +10,7 @@
 
 2.
 ```sh
-minikube start
+minikube start --memory 4000 --cpus 2
 
 make argocd_up
 ```
@@ -62,7 +62,9 @@ https://github.com/jkayani/avp-demo-kubecon-2021
 - [ ] sonarcloud?
 - [X] categories/meetings retry policies when db/kafka cannot be reached
 - [X] create app variants
-- [ ] argocd rollout
+- [X] keycloak - cloud
+- [ ] ingress with localhost
 - [ ] secrets
+- [ ] argocd rollout
 - [ ] service mesh?
-- [ ] opentelemetry/datadog?/prometheus?/
+- [ ] opentelemetry/datadog?/prometheus?
