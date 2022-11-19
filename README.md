@@ -59,7 +59,7 @@ make argocd_down
 https://github.com/jkayani/avp-demo-kubecon-2021
 
 ## Todo:
-- [ ] sonarcloud?
+- [ ] Sonarcloud?
 - [X] categories/meetings retry policies when db/kafka cannot be reached
 - [X] create app variants
 - [ ] argocd rollout
