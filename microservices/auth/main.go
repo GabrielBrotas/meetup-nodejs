@@ -3,23 +3,27 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	oidc "github.com/coreos/go-oidc/v3/oidc"
 	"golang.org/x/oauth2"
 )
 
 var (
-	clientID     = "meetup-client"
-	clientSecret = "3Hi5x4Y5dspzHxudAHBKUiRWR7kBxowQ"
+	clientID     = os.Getenv("clientID")
+	clientSecret = os.Getenv("clientSecret") // Clients -> Credentials
 )
 
 func main() {
 	ctx := context.Background()
 
+	log.Println(clientID, clientSecret)
+
 	// endpoint got from Realm Settings -> Endpoints -> Issuer
-	provider, err := oidc.NewProvider(ctx, "http://localhost:8081/realms/meetup")
+	provider, err := oidc.NewProvider(ctx, os.Getenv("issuer_oidc_endpoing"))
 
 	if err != nil {
 		log.Fatal(err)
@@ -30,10 +34,10 @@ func main() {
 		ClientSecret: clientSecret,
 		Endpoint:     provider.Endpoint(),
 		RedirectURL:  "http://localhost:4002/auth/callback",
-		Scopes:       []string{oidc.ScopeOpenID, "profile", "email", "roles"},
+		Scopes:       []string{oidc.ScopeOpenID, "profile", "email", "roles", "team"},
 	}
 
-	state := "123"
+	state := os.Getenv("oidc_state") // put in .env
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, oauth2Config.AuthCodeURL(state), http.StatusFound)
@@ -89,7 +93,7 @@ func main() {
 			IDToken     string
 		}{
 			AccessToken: oauth2Token, // oauth2 token, token to authorize user in some service
-			IDToken:     rawIDToken, // authentication token
+			IDToken:     rawIDToken,  // authentication token
 		}
 
 		data, err := json.Marshal(resp)
@@ -101,5 +105,8 @@ func main() {
 		w.Write(data)
 	})
 
-	log.Fatal(http.ListenAndServe(":4002", nil))
+	port := 4002
+	log.Printf("App running in port %d", port)
+
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
 }
