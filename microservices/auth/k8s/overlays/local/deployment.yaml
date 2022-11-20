@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meetup-auth
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: meetup-auth
+        image: gbrotas/meetup-auth:1.0.0
+        ports:
+        - containerPort: 4002
+        resources: {}
+        envFrom:
+          - secretRef:
+              name: meetup-auth-secrets

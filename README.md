@@ -48,6 +48,14 @@ docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
     -f microservices/meetings/Dockerfile.prod microservices/meetings
 
 docker push gbrotas/meetup-meetings --all-tags
+
+# Auth
+export AUTH_VERSION='1.0.0'
+docker build -t gbrotas/meetup-auth:$AUTH_VERSION \
+    -t gbrotas/meetup-auth:latest \
+    -f microservices/auth/Dockerfile microservices/auth
+
+docker push gbrotas/meetup-auth:$AUTH_VERSION
 ```
 
 ### clean up
@@ -63,8 +71,8 @@ https://github.com/jkayani/avp-demo-kubecon-2021
 - [X] categories/meetings retry policies when db/kafka cannot be reached
 - [X] create app variants
 - [X] keycloak - cloud
-- [ ] ingress with localhost
 - [ ] secrets
+- [ ] ingress with localhost
 - [ ] argocd rollout
 - [ ] service mesh?
 - [ ] opentelemetry/datadog?/prometheus?

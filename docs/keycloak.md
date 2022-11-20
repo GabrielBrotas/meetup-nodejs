@@ -1,4 +1,6 @@
-1 - Create a realm
+1 - Once you create your keycloak deployment using `cloud-iam` you'll receive the admin credentials in your email inbox.
+
+2 - Create a realm
 A realm in Keycloak is the equivalent of a tenant. It allows creating isolated groups of applications and users. By default there is a single realm in Keycloak called master. This is dedicated to manage Keycloak and should not be used for your own applications.
 
 Realm name: meetup
@@ -32,3 +34,4 @@ Make sure 'Standard flow' is enabled
 Click 'Save'
 
 5 - Set Client Authentication to ON - to confidential access type
+5.1 - Redirect url = http://localhost:4002/auth/callback

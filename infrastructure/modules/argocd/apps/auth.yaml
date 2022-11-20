@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: meetup-auth
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: meetup-auth
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/GabrielBrotas/meetup-microservices 
+    targetRevision: HEAD
+    path: microservices/auth/k8s/overlays/local
+
+    kustomize:
+      commonLabels:
+        project: meetup
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: meetings
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:     
+    - Validate=false 
+    - CreateNamespace=true 
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true 
+
+    retry:
+      limit: 10
+      backoff:
+        duration: 5s
+        factor: 2 
+        maxDuration: 3m
