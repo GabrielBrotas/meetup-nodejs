@@ -17,5 +17,6 @@ kubeseal --fetch-cert > public-cert.pem
 ```sh
 kubeseal --cert public-cert.pem --format=yaml < microservices/auth/k8s/overlays/local/secrets.dec.yaml > microservices/auth/k8s/overlays/local/secrets.enc.yaml
 
-kubectl neat -f microservices/auth/k8s/overlays/local/secrets.enc.yaml > mycleanedsealedtoken.yaml
+# deploy app
+kustomize build microservices/auth/k8s/overlays/local | kubectl apply -f -
 ```
