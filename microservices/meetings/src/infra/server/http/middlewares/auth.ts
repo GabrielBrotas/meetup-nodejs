@@ -19,7 +19,7 @@ function extractUserDataFromToken(token): IUserFromToken {
   return {
     name: token.content.name,
     groups: token.content.groups,
-    team: token.contenct.team,
+    team: token.content.team,
     email_verified: token.content.email_verified,
   };
 }

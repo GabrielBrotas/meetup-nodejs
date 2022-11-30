@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
       - name: meetup-meetings
-        image: gbrotas/meetup-meetings:1.2.0
+        image: gbrotas/meetup-meetings:1.2.1
         resources: {}
         env:
           - name: ENVIRONMENT
