@@ -37,11 +37,13 @@ export const meetingsRouter = () => {
   );
   meetingsRouter.delete(
     "/:id",
+    (req, res, next) => ensureAuth(req, res, next, "Senior Software Engineer"),
     async (req, res) => await deleteMeetingController.handle(req, res)
   );
 
   meetingsRouter.post(
     "/",
+    (req, res, next) => ensureAuth(req, res, next, "Senior Software Engineer"),
     body("name").isString(),
     body("category_id").isString(),
     body("date").toDate().notEmpty(),

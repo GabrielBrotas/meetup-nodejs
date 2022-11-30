@@ -42,7 +42,7 @@ docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
 docker push gbrotas/meetup-categories --all-tags
 
 # Meetings
-export MEETINGS_VERSION='1.1.10'
+export MEETINGS_VERSION='1.2.0'
 
 docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
     -f microservices/meetings/Dockerfile.prod microservices/meetings
