@@ -15,5 +15,5 @@ kubectl get ingress -n auth # get host address
 sudo nano /etc/hosts
 
 # End of section
-192.168.49.2 http://auth.meetup.info
+192.168.49.2 hello-world.info
 ```

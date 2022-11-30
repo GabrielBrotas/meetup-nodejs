@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: auth.meetup.info
+  - host: hello-world.info
     http:
       paths:
       - path: /
