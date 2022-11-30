@@ -41,13 +41,12 @@ docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
 docker push gbrotas/meetup-categories --all-tags
 
 # Meetings
-export MEETINGS_VERSION='1.0.8'
+export MEETINGS_VERSION='1.1.8'
 
 docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
-    -t gbrotas/meetup-meetings:latest \
     -f microservices/meetings/Dockerfile.prod microservices/meetings
 
-docker push gbrotas/meetup-meetings --all-tags
+docker push gbrotas/meetup-meetings:$MEETINGS_VERSION
 
 # Auth
 export AUTH_VERSION='1.0.1'
@@ -72,7 +71,7 @@ https://github.com/jkayani/avp-demo-kubecon-2021
 - [X] create app variants
 - [X] keycloak - cloud
 - [X] secrets
-- [ ] ingress with localhost
+- [ ] microservices auth with keycloak
 - [ ] argocd rollout
 - [ ] service mesh?
 - [ ] opentelemetry/datadog?/prometheus?

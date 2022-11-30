@@ -6,6 +6,7 @@ import { CreateMeetingController } from "./controller/create-meeting-controller"
 import { FindOneMeetingController } from "./controller/find-one-meeting-controller";
 import { DeleteMeetingController } from "./controller/delete-meeting-controller";
 import { setupMeetingListeners } from "./listeners";
+import { ensureAuth } from "../../../server/http/middlewares/ensureAuth";
 
 export const meetingsRouter = () => {
   const meetingsRouter = Router()
@@ -17,7 +18,7 @@ export const meetingsRouter = () => {
   const findOneMeetingController = new FindOneMeetingController(meetingsRepository);
   const deleteMeetingController = new DeleteMeetingController(meetingsRepository);
   
-  meetingsRouter.get("/", async (req, res) => await findAllMeetingsController.handle(req, res))
+  meetingsRouter.get("/", ensureAuth, async (req, res) => await findAllMeetingsController.handle(req, res))
   meetingsRouter.get("/:id", async (req, res) => await findOneMeetingController.handle(req, res))
   meetingsRouter.delete("/:id", async (req, res) => await deleteMeetingController.handle(req, res))
   

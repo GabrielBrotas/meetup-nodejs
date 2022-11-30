@@ -2,6 +2,7 @@ import express from 'express'
 import { meetingsRouter } from 'infra/meetings/server/http/routes'
 import { hostname } from 'os'
 import { sync_db } from '../db'
+import { ensureAuth } from './middlewares/ensureAuth'
 
 async function main() {
   const app = express()
