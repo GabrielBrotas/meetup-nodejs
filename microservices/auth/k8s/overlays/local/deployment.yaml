@@ -15,7 +15,7 @@ spec:
         resources: {}
         env:
           - name: apiUrl
-            value: http://hello-world.info
+            value: http://localhost:4002
         envFrom:
           - secretRef:
               name: meetup-auth-secrets
