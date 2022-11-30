@@ -15,6 +15,7 @@ import (
 var (
 	clientID     = os.Getenv("clientID")
 	clientSecret = os.Getenv("clientSecret") // Clients -> Credentials
+	apiUrl       = os.Getenv("apiUrl")
 )
 
 func main() {
@@ -33,7 +34,7 @@ func main() {
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
 		Endpoint:     provider.Endpoint(),
-		RedirectURL:  "http://localhost:4002/auth/callback",
+		RedirectURL:  apiUrl + "/auth/callback",
 		Scopes:       []string{oidc.ScopeOpenID, "profile", "email", "roles", "team"},
 	}
 

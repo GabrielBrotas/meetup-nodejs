@@ -9,10 +9,13 @@ spec:
     spec:
       containers:
       - name: meetup-auth
-        image: gbrotas/meetup-auth:1.0.0
+        image: gbrotas/meetup-auth:1.0.1
         ports:
         - containerPort: 4002
         resources: {}
+        env:
+          - name: apiUrl
+            value: http://auth.meetup
         envFrom:
           - secretRef:
               name: meetup-auth-secrets

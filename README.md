@@ -50,7 +50,7 @@ docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
 docker push gbrotas/meetup-meetings --all-tags
 
 # Auth
-export AUTH_VERSION='1.0.0'
+export AUTH_VERSION='1.0.1'
 docker build -t gbrotas/meetup-auth:$AUTH_VERSION \
     -t gbrotas/meetup-auth:latest \
     -f microservices/auth/Dockerfile microservices/auth
