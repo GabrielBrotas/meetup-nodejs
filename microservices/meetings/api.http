@@ -10,6 +10,7 @@ GET http://localhost:4000/meetings
 ###
 POST http://localhost:4000/meetings
 Content-Type: application/json
+Authorization: Bearer ABCsadajsdahkj
 
 {
   "name": "Docker to everyone",

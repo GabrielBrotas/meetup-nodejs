@@ -19,7 +19,7 @@ make argocd_up
 ```sh
 kubectl port-forward svc/keycloak -n keycloak 8081:8080
 kubectl port-forward svc/meetings-svc -n meetings 4000:4000
-kubectl port-forward svc/categories-svc -n categories 4000:4000
+kubectl port-forward svc/categories-svc -n categories 4001:4001
 ```
 
 *test kafka connection*
@@ -41,7 +41,7 @@ docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
 docker push gbrotas/meetup-categories --all-tags
 
 # Meetings
-export MEETINGS_VERSION='1.1.8'
+export MEETINGS_VERSION='1.1.9'
 
 docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
     -f microservices/meetings/Dockerfile.prod microservices/meetings
