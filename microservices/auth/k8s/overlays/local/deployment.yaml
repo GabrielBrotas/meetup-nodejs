@@ -15,7 +15,7 @@ spec:
         resources: {}
         env:
           - name: apiUrl
-            value: http://auth.meetup
+            value: http://auth.meetup.info
         envFrom:
           - secretRef:
               name: meetup-auth-secrets
