@@ -71,7 +71,7 @@ https://github.com/jkayani/avp-demo-kubecon-2021
 - [X] categories/meetings retry policies when db/kafka cannot be reached
 - [X] create app variants
 - [X] keycloak - cloud
-- [ ] secrets
+- [X] secrets
 - [ ] ingress with localhost
 - [ ] argocd rollout
 - [ ] service mesh?

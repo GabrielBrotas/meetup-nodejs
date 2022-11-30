@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: meetings-svc
-
+  name: auth-svc
+  namespace: auth
 spec:
   selector:
-    app: meetup-meetings
-  
+    app: meetup-auth
   type: NodePort
   ports:
-    - name: meetings-svc
+    - name: auth-svc
       port: 4002
       targetPort: 4002
       protocol: TCP
