@@ -6,9 +6,14 @@ metadata:
 spec:
   selector:
     app: meetup-auth
-  type: NodePort
+  type: ClusterIP
   ports:
     - name: auth-svc
       port: 4002
       targetPort: 4002
+      protocol: TCP
+
+    - name: auth-https
+      targetPort: 443
+      port: 443
       protocol: TCP
