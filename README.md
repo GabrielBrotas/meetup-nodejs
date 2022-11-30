@@ -72,7 +72,7 @@ https://github.com/jkayani/avp-demo-kubecon-2021
 - [X] create app variants
 - [X] keycloak - cloud
 - [X] secrets
-- [ ] microservices auth with keycloak
+- [ ] microservices auth with keycloak -> Put secrets in .env and add to categories svc and add add middleware based in group
 - [ ] argocd rollout
 - [ ] service mesh?
 - [ ] opentelemetry/datadog?/prometheus?
