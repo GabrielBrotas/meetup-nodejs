@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
       - name: meetup-auth
-        image: gbrotas/meetup-auth:1.0.1
+        image: gbrotas/meetup-auth:1.0.2
         ports:
         - containerPort: 4002
         resources: {}

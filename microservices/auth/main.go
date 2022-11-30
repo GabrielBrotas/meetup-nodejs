@@ -41,6 +41,7 @@ func main() {
 	state := os.Getenv("oidc_state") // put in .env
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Got request !")
 		http.Redirect(w, r, oauth2Config.AuthCodeURL(state), http.StatusFound)
 	})
 
