@@ -10,6 +10,6 @@ spec:
   type: NodePort
   ports:
     - name: meetings-svc
-      port: 4000
-      targetPort: 4000
+      port: 4002
+      targetPort: 4002
       protocol: TCP

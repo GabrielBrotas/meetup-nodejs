@@ -85,6 +85,7 @@ func main() {
 
 		if err != nil {
 			// handle error
+			log.Println("error here :", err)
 			log.Fatal(err)
 		}
 
