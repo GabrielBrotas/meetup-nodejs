@@ -13,7 +13,7 @@ spec:
   - host: localhost
     http:
       paths:
-      - path: /
+      - path: /auth
         pathType: Prefix
         backend:
           service:
