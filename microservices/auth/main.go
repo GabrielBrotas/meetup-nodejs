@@ -21,7 +21,7 @@ var (
 func main() {
 	ctx := context.Background()
 
-	log.Println(clientID, clientSecret)
+	log.Println(clientID, clientSecret, apiUrl)
 
 	// endpoint got from Realm Settings -> Endpoints -> Issuer
 	provider, err := oidc.NewProvider(ctx, os.Getenv("issuer_oidc_endpoing"))
