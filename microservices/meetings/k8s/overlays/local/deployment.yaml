@@ -27,3 +27,6 @@ spec:
             value: 'my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092'
           - name: category_url
             value: 'http://categories-svc.categories.svc.cluster.local:4001'
+        envFrom:
+        - secretRef:
+            name: meetup-meetings-secrets
