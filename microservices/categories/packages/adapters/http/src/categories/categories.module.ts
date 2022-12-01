@@ -1,5 +1,10 @@
-import { Module } from '@nestjs/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
+import { ensureAuth } from 'src/middlewares/auth';
 import { CategoriesController } from './categories.controller';
 
 import { CATEGORY_PROVIDERS } from './categories.providers';
@@ -24,4 +29,16 @@ import { CATEGORY_PROVIDERS } from './categories.providers';
     // },
   ],
 })
-export class CategoriesModule { }
+export class CategoriesModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply((req, res, next) =>
+        ensureAuth(req, res, next, 'Senior Software Engineer'),
+      )
+      .exclude(
+        { path: 'categories/(.*)', method: RequestMethod.GET },
+        { path: 'categories', method: RequestMethod.GET },
+      )
+      .forRoutes(CategoriesController);
+  }
+}

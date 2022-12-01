@@ -10,9 +10,8 @@ import {
 } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-
-import { EntityValidationError } from '@gbrotas/categories-core/domain';
 import {
+  EntityValidationError,
   CreateCategoryUseCase,
   FindAllCategoriesUseCase,
   FindOneCategoryUseCase,

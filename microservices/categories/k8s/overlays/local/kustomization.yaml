@@ -11,6 +11,7 @@ bases:
 
 resources:
 - ./db.yaml
+- ./secrets.enc.yaml
 
 patchesStrategicMerge:
 - deployment.yaml

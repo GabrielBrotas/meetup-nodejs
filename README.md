@@ -34,12 +34,11 @@ kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.32.0-kaf
 ### Build Images
 ```sh
 # Categories
-export CATEGORY_VERSION='1.0.8'
+export CATEGORY_VERSION='1.1.0'
 docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
-    -t gbrotas/meetup-categories:latest \
     -f microservices/categories/Dockerfile.prod microservices/categories
 
-docker push gbrotas/meetup-categories --all-tags
+docker push gbrotas/meetup-categories:$CATEGORY_VERSION
 
 # Meetings
 export MEETINGS_VERSION='1.2.0'
@@ -72,7 +71,8 @@ https://github.com/jkayani/avp-demo-kubecon-2021
 - [X] create app variants
 - [X] keycloak - cloud
 - [X] secrets
-- [ ] microservices auth with keycloak -> Put secrets in .env and add to categories svc and add add middleware based in group
+- [X] microservices auth service with keycloak
+- [X] microservices middleware routes with keycloak sdk
 - [ ] argocd rollout
 - [ ] service mesh?
 - [ ] opentelemetry/datadog?/prometheus?
