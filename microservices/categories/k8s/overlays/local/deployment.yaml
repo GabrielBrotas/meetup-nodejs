@@ -29,3 +29,6 @@ spec:
             value: categories
           - name: kafka_brokers
             value: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
+        envFrom:
+        - secretRef:
+            name: meetup-categories-secrets
