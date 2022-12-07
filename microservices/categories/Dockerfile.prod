@@ -1,4 +1,4 @@
-FROM node:16.13.0-slim as builder
+FROM node:gallium-slim as builder
 
 WORKDIR /usr/src/app
 
@@ -7,7 +7,7 @@ COPY packages ./packages
 RUN npm install
 RUN npm run build
 
-FROM node:16.13.0-slim
+FROM node:gallium-slim
 
 WORKDIR /usr/src/app
 
