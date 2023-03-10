@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meetup-categories
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: meetup-categories
+        image: gbrotas/meetup-categories:1.0.8
+        resources: {}
+        env:
+          - name: ENVIRONMENT
+            value: local
+          - name: DB_USER
+            value: admin
+          - name: DB_PASS
+            value: psltest
+          - name: DB_NAME
+            value: postgresdb
+          - name: DB_HOST
+            value: postgres
+          - name: DB_PORT
+            value: '5432'
+          - name: DB_DIALECT
+            value: postgres
+          - name: kafka_clientID
+            value: categories
+          - name: kafka_brokers
+            value: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092

@@ -1,0 +1,32 @@
+{
+  "name": "categories",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "engines": {
+    "node": "16 || 17"
+  },
+  "scripts": {
+    "build": "npm run build --workspace=@gbrotas/categories-core && npm run build --workspace=@gbrotas/categories-http",
+    "prestart:dev": "npm run build --workspace=@gbrotas/categories-core",
+    "start:dev": "npm run start:dev -w @gbrotas/categories-http",
+    "start:prod": "npm run start:prod -w @gbrotas/categories-http",
+    "test": "jest",
+    "test:core": "npm run test --workspace=@gbrotas/categories-core",
+    "test:adapters": "npm run test --workspace=@gbrotas/categories-http"
+  },
+  "workspaces": [
+    "packages/core",
+    "packages/adapters/http"
+  ],
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.3.0"
+  },
+  "dependencies": {
+    "@nestjs/config": "^2.2.0",
+    "dotenv": "^16.0.2",
+    "kafkajs": "^2.2.0"
+  }
+}

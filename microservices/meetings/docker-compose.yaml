@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  meetings:
+    depends_on:
+      - meetings-db
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: meetings-svc
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/home/node/app
+    command: .docker/start.sh
+    # command: sh -c "dockerize -wait tcp://meetings-db:5432 -timeout 30s -wait-retry-interval 3s python3 project/server.py"
+
+  meetings-db:
+    image: postgres:13.1-alpine
+    container_name: meetings-db
+    restart: always
+    tty: true 
+    ports:
+      - '5433:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=postgres
+    volumes:
+      - .docker/db:/var/lib/postgresql/data
+
+  meetings-test-db:
+    image: postgres:13.1-alpine
+    container_name: meetings-test-db
+    restart: always
+    tty: true 
+    ports:
+      - '5434:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=postgres
+    volumes:
+      - .docker/db:/var/lib/postgresql/data

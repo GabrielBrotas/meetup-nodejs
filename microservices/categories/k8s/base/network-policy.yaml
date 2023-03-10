@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: categories-network-policy
+  namespace: categories
+spec:
+  podSelector:
+    matchLabels:
+      app: meetup-categories
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            project: 'meetup'
