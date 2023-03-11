@@ -106,14 +106,12 @@ classDiagram
 
 2.
 ```sh
-minikube start --memory 4000 --cpus 2
-
-make argocd_up
+make up
 ```
 
 *forward ports*
 ```sh
-kubectl port-forward svc/keycloak -n keycloak 8081:8080
+kubectl port-forward svc/argocd-server -n argocd 8080:443
 kubectl port-forward svc/meetings-svc -n meetings 4000:4000
 kubectl port-forward svc/categories-svc -n categories 4000:4000
 ```
@@ -148,19 +146,5 @@ docker push gbrotas/meetup-meetings --all-tags
 
 ### clean up
 ```sh
-make argocd_down
+make down
 ```
-
-## Refs:
-https://github.com/jkayani/avp-demo-kubecon-2021
-
-## Todo:
-- [ ] sonarcloud?
-- [X] categories/meetings retry policies when db/kafka cannot be reached
-- [X] create app variants
-- [X] keycloak - cloud
-- [ ] ingress with localhost
-- [ ] secrets
-- [ ] argocd rollout
-- [ ] service mesh?
-- [ ] opentelemetry/datadog?/prometheus?

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: argocd-cm
-data:
-  kustomize.path.v4.5.7: /custom-tools/kustomize_4_5_7
-  timeout.reconciliation: 5m30s
