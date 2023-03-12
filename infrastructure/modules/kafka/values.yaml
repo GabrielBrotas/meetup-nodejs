@@ -3,7 +3,7 @@ kafka:
     enabled: false
 
   externalAccess:
-    enabled: true
+    enabled: false
 
   zookeeper:
     persistence:
