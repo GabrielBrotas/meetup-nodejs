@@ -2,9 +2,6 @@ kafka:
   persistence:
     enabled: false
 
-  externalAccess:
-    enabled: false
-
   zookeeper:
     persistence:
       enabled: false
