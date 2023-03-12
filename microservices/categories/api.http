@@ -2,6 +2,8 @@
 ###
 GET http://localhost:4001/health-check
 
+###
+GET http://localhost:4001/categories
 
 ###
 POST http://localhost:4001/categories
@@ -11,25 +13,20 @@ Content-Type: application/json
     "name": "Programming"
 }
 
-
 ###
-GET http://localhost:4001/categories
-
-
-###
-GET http://localhost:4001/categories/0b0a9864-a156-4298-8990-c16c893759c2
+GET http://localhost:4001/categories/bdd56403-3597-4471-bb66-a88316fd506f
 
 
 ###
-DELETE http://localhost:4001/categories/e9d96edf-7716-4730-8251-db0cea13a49e
+DELETE http://localhost:4001/categories/bdd56403-3597-4471-bb66-a88316fd506f
 
 
 ###
-PATCH http://localhost:4001/categories/0a046e0a-c26b-4da8-87e7-a44b46d1faee
+PATCH http://localhost:4001/categories/8b2469da-f0d8-4584-ae46-5be2493e102e
 Content-Type: application/json
 
 {
-    "name": "Technology 11"
+    "name": "Technology demo"
 }
 
 

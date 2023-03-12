@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { CategoriesController } from './categories.controller';
 
 import { CATEGORY_PROVIDERS } from './categories.providers';

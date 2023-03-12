@@ -30,14 +30,6 @@ build-images:
 		docker build -t gbrotas/meetup-meetings:$(IMAGE_TAG) \
 			-f microservices/meetings/Dockerfile microservices/meetings
 
-
-local-start-kafka:
-	@echo "Starting Kafka..."
-	kubectl create ns kafka
-	kubectl apply -n kafka -k ./infrastructure/modules/kafka-operator
-	
-	kubectl apply -n kafka -k ./infrastructure/modules/kafka-cluster
-
 stop-minikube:
 	@echo "Stopping Minikube..."
 	minikube stop
@@ -46,10 +38,12 @@ stop-minikube:
 forward-ports:
 	@echo "Forwarding Ports..."
 
-	kubectl -n argocd port-forward svc/argo-cd-argocd-server 8080:443
+	kubectl -n argocd port-forward svc/argo-cd-argocd-server 8080:443 & \
+	kubectl -n meetings port-forward svc/meetings-svc 4000:4000 & \
+	kubectl -n categories port-forward svc/categories-svc 4001:4001
 	
 # Targets
-up: start-minikube start-argocd start-apps
+up: start-minikube start-argocd build-images start-apps forward-ports
 down: stop-minikube
 
 .PHONY: up down start-minikube start-argocd start-apps start-kafka forward-ports stop-minikube
