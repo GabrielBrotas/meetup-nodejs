@@ -1,5 +1,4 @@
 kafka:
-    type: ephemeral
-
+  type: ephemeral
   persistence:
     enabled: false
