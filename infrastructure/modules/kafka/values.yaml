@@ -1,9 +1,15 @@
 kafka:
-  type: ephemeral
-
   persistence:
     enabled: false
+
+  externalAccess:
+    enabled: true
 
   zookeeper:
     persistence:
       enabled: false
+
+  containerPorts:
+    client:	9092
+    internal:	9093
+    external: 9094
