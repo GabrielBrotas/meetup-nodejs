@@ -5,6 +5,8 @@ start-argocd:
 	@echo "Starting ArgoCD..."
 	
 	@if [ -f "infrastructure/modules/argo-cd/charts/argo-cd-5.16.1.tgz" ]; then\
+		echo "dependencies already exists";\
+	else\
         helm dependency build ./infrastructure/modules/argo-cd;\
     fi
 
@@ -15,12 +17,8 @@ start-argocd:
 
 	kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 
-start-kafka:
-	@echo "Starting Kafka..."
-	kubectl create ns kafka
-	kubectl apply -n kafka -k ./infrastructure/modules/kafka-operator
-	
-	kubectl apply -n kafka -k ./infrastructure/modules/kafka-cluster
+start-apps:
+	kubectl apply -f infrastructure/app-of-apps/local/argo-cd.yaml
 
 IMAGE_TAG ?= latest
 build-images:
@@ -30,6 +28,14 @@ build-images:
 			-f microservices/categories/Dockerfile microservices/categories && \
 		docker build -t gbrotas/meetup-meetings:$(IMAGE_TAG) \
 			-f microservices/meetings/Dockerfile microservices/meetings
+
+
+local-start-kafka:
+	@echo "Starting Kafka..."
+	kubectl create ns kafka
+	kubectl apply -n kafka -k ./infrastructure/modules/kafka-operator
+	
+	kubectl apply -n kafka -k ./infrastructure/modules/kafka-cluster
 
 stop-minikube:
 	@echo "Stopping Minikube..."
@@ -42,7 +48,7 @@ forward-ports:
 	kubectl -n argocd port-forward svc/argo-cd-argocd-server 8080:443
 	
 # Targets
-up: start-minikube start-argocd start-kafka
+up: start-minikube start-argocd start-apps
 down: stop-minikube
 
-.PHONY: up down start-minikube start-argocd start-kafka forward-ports stop-minikube
+.PHONY: up down start-minikube start-argocd start-apps start-kafka forward-ports stop-minikube
