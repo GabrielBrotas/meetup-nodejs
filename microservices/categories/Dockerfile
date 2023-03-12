@@ -1,35 +1,26 @@
+FROM node:16.13.0-slim as builder
+
+WORKDIR /usr/src/app
+
+COPY package.json tsconfig.base.json ./
+COPY packages ./packages
+RUN npm install
+RUN npm run build
+
 FROM node:16.13.0-slim
 
-RUN mkdir -p /usr/share/man/man1 && \
-    echo 'deb http://ftp.debian.org/debian stretch-backports main' | tee /etc/apt/sources.list.d/stretch-backports.list && \
-    apt update && apt install -y \
-    git \
-    ca-certificates \
-    openjdk-11-jre \
-    zsh \
-    curl \
-    wget \
-    fonts-powerline \
-    procps
+WORKDIR /usr/src/app
 
-RUN npm install -g npm@8.5.5
+COPY package*.json ./
 
-ENV JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+COPY --from=builder /usr/src/app/packages/core/dist ./packages/core/dist
+COPY --from=builder /usr/src/app/packages/core/package*.json ./packages/core/
 
-USER node
+COPY --from=builder /usr/src/app/packages/adapters/http/dist ./packages/adapters/http/dist
+COPY --from=builder /usr/src/app/packages/adapters/http/package*.json ./packages/adapters/http/
 
-WORKDIR /home/node/app
+RUN npm install --only=production --silent
 
-RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.2/zsh-in-docker.sh)" -- \
-    -t https://github.com/romkatv/powerlevel10k \
-    -p git \
-    -p git-flow \
-    -p https://github.com/zdharma-continuum/fast-syntax-highlighting \
-    -p https://github.com/zsh-users/zsh-autosuggestions \
-    -p https://github.com/zsh-users/zsh-completions \
-    -a 'export TERM=xterm-256color'
+EXPOSE 4001
 
-RUN echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> ~/.zshrc && \
-    echo 'HISTFILE=/home/node/zsh/.zsh_history' >> ~/.zshrc 
-
-CMD [ "tail", "-f" , "/dev/null" ]
+CMD ["npm", "run", "start:prod"]

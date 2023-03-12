@@ -3,15 +3,13 @@ kind: Application
 metadata:
   name: meetup-meetings
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
   labels:
     name: meetup-meetings
 spec:
   project: default
 
   source:
-    repoURL: https://github.com/GabrielBrotas/meetup-microservices 
+    repoURL: https://github.com/GabrielBrotas/meetup-microservices
     targetRevision: HEAD
     path: microservices/meetings/k8s/overlays/local
 
@@ -20,7 +18,7 @@ spec:
         project: meetup
 
   destination:
-    server: https://kubernetes.default.svc
+    name: in-cluster
     namespace: meetings
 
   syncPolicy:
@@ -28,15 +26,15 @@ spec:
       prune: true
       selfHeal: true
       allowEmpty: false
-    syncOptions:     
-    - Validate=false 
-    - CreateNamespace=true 
-    - PrunePropagationPolicy=foreground
-    - PruneLast=true 
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
 
     retry:
       limit: 10
       backoff:
         duration: 5s
-        factor: 2 
+        factor: 2
         maxDuration: 3m

@@ -109,13 +109,6 @@ classDiagram
 make up
 ```
 
-*forward ports*
-```sh
-kubectl port-forward svc/argocd-server -n argocd 8080:443
-kubectl port-forward svc/meetings-svc -n meetings 4000:4000
-kubectl port-forward svc/categories-svc -n categories 4000:4000
-```
-
 *test kafka connection*
 ```sh
 ## test kafka connection
@@ -126,22 +119,10 @@ kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.32.0-kaf
 
 ### Build Images
 ```sh
-# Categories
-export CATEGORY_VERSION='1.0.8'
-docker build -t gbrotas/meetup-categories:$CATEGORY_VERSION \
-    -t gbrotas/meetup-categories:latest \
-    -f microservices/categories/Dockerfile.prod microservices/categories
+make build-images
 
-docker push gbrotas/meetup-categories --all-tags
-
-# Meetings
-export MEETINGS_VERSION='1.0.8'
-
-docker build -t gbrotas/meetup-meetings:$MEETINGS_VERSION \
-    -t gbrotas/meetup-meetings:latest \
-    -f microservices/meetings/Dockerfile.prod microservices/meetings
-
-docker push gbrotas/meetup-meetings --all-tags
+# if you want to specify a tag
+make build-images IMAGE_TAG=0.0.1
 ```
 
 ### clean up
