@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
 - ./namespace.yaml
-- https://strimzi.io/install/latest?namespace=kafka
+- github.com/strimzi/strimzi-kafka-operator//install/cluster-operator?ref=0.33.2
