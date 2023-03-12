@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kafka
+  name: kafka-cluster
   namespace: argocd
   labels:
-    name: kafka
+    name: kafka-cluster
 spec:
   project: default
 
