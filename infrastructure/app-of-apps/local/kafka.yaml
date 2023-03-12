@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka
+  namespace: argocd
+  labels:
+    name: kafka
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/GabrielBrotas/meetup-microservices
+    targetRevision: HEAD
+    path: ./infrastructure/modules/kafka
+
+  destination:
+    name: in-cluster
+    namespace: kafka
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
