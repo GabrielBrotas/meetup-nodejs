@@ -1,4 +1,9 @@
 kafka:
   type: ephemeral
+
   persistence:
     enabled: false
+
+  zookeeper:
+    persistence:
+      enabled: false
