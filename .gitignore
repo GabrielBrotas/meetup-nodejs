@@ -2,3 +2,4 @@ infrastructure/modules/argocd/overlays/repository-secret.yaml
 .secrets
 
 **/charts/*
+!**/charts/*.gitkeep
