@@ -12,9 +12,9 @@ POST http://localhost:4000/meetings
 Content-Type: application/json
 
 {
-  "name": "Docker to everyone",
-  "category_id": "8b2469da-f0d8-4584-ae46-5be2493e102e",
-  "date": "2022-09-02T01:12:42.702Z"
+  "name": "ArgoCD",
+  "category_id": "cc6e3bcd-b2cd-4dcf-9999-9bac3ae6850d",
+  "date": "2023-05-02T01:12:42.702Z"
 }
 
 ###

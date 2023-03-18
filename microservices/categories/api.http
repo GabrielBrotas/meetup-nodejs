@@ -18,15 +18,15 @@ GET http://localhost:4001/categories/bdd56403-3597-4471-bb66-a88316fd506f
 
 
 ###
-DELETE http://localhost:4001/categories/bdd56403-3597-4471-bb66-a88316fd506f
+DELETE http://localhost:4001/categories/5357763a-3989-43ef-9caa-2ed0561d6003
 
 
 ###
-PATCH http://localhost:4001/categories/8b2469da-f0d8-4584-ae46-5be2493e102e
+PATCH http://localhost:4001/categories/cc6e3bcd-b2cd-4dcf-9999-9bac3ae6850d
 Content-Type: application/json
 
 {
-    "name": "Technology demo"
+    "name": "GitOps"
 }
 
 

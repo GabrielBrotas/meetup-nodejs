@@ -13,7 +13,7 @@ start-argocd:
 	helm install argo-cd -n argocd \
 		--create-namespace ./infrastructure/modules/argo-cd
 
-	sleep 1s
+	sleep 5s
 	kubectl wait --for=condition=ready --timeout=300s pod -l app.kubernetes.io/name=argocd-server -n argocd
 
 	kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
@@ -38,12 +38,12 @@ stop-minikube:
 forward-ports:
 	@echo "Forwarding Ports..."
 
-	kubectl -n argocd port-forward svc/argo-cd-argocd-server 8080:443 & \
-	kubectl -n meetings port-forward svc/meetings-svc 4000:4000 & \
-	kubectl -n categories port-forward svc/categories-svc 4001:4001
+	# kubectl -n argocd port-forward svc/argo-cd-argocd-server 8080:443 & \
+	# kubectl -n meetings port-forward svc/meetings-svc 4000:4000 & \
+	# kubectl -n categories port-forward svc/categories-svc 4001:4001
 	
 # Targets
-up: start-minikube start-argocd build-images start-apps forward-ports
+up: start-minikube start-argocd build-images start-apps
 down: stop-minikube
 
 .PHONY: up down start-minikube start-argocd start-apps start-kafka forward-ports stop-minikube

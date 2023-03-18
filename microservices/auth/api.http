@@ -1,0 +1,8 @@
+GET http://localhost:9090/healthy
+
+###
+GET http://localhost:9090/users
+
+###
+GET http://localhost:9090/auth/me
+Authorization: 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
