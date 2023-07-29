@@ -1,4 +1,4 @@
-FROM node:16.13.0-slim as builder
+FROM node:16.20.1-slim as builder
 
 WORKDIR /usr/src/app
 
@@ -7,7 +7,7 @@ COPY packages ./packages
 RUN npm install
 RUN npm run build
 
-FROM node:16.13.0-slim
+FROM node:16.20.1-slim
 
 WORKDIR /usr/src/app
 
