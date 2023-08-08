@@ -11,7 +11,7 @@ COPY *.go ./
 
 RUN CGO_ENABLED=0 go build -o auth_app main.go
 
-FROM alpine:latest
+FROM alpine:3.18.3
 
 WORKDIR /app
 
